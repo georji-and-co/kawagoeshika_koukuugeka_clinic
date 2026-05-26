@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>医療法人 井上歯科医院 川越歯科口腔外科クリニック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1612;
+    --ink-soft: #2c2620;
+    --espresso: #3d342c;
+    --stone: #6b5f54;
+    --mist: #9a8f84;
+    --parchment: #f4efe6;
+    --parchment-deep: #ebe4d8;
+    --ivory: #faf8f4;
+    --white: #ffffff;
+    --bronze: #a67c52;
+    --bronze-light: #c9a882;
+    --bronze-pale: rgba(166,124,82,0.12);
+    --sage: #5c6b5a;
+    --sage-deep: #3d4a3b;
+    --sage-pale: #e8ede7;
+    --border: rgba(26,22,18,0.1);
+    --serif: 'EB Garamond', 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+    --hours-h: 40px;
+    --nav-h: 64px;
+    --header-total: calc(var(--hours-h) + var(--nav-h));
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-lux: cubic-bezier(0.16, 0.84, 0.44, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--ivory);
+    line-height: 1.75;
+    overflow-x: hidden;
+    padding-top: var(--header-total);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── HOURS BANNER (always visible) ── */
+  .hours-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: var(--hours-h);
+    background: var(--ink);
+    border-bottom: 1px solid rgba(201,168,130,0.2);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hours-banner-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+  .hours-banner-label {
+    flex-shrink: 0;
+    color: var(--bronze-light);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hours-banner-label::after {
+    content: '';
+    width: 1px;
+    height: 14px;
+    background: rgba(201,168,130,0.35);
+  }
+  .hours-banner-grid {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 1.75rem);
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: center;
+  }
+  .hours-cell {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    color: rgba(250,248,244,0.75);
+    white-space: nowrap;
+  }
+  .hours-cell .day {
+    color: var(--bronze-light);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    min-width: 1.2em;
+  }
+  .hours-cell.closed .time { color: rgba(250,248,244,0.35); text-decoration: line-through; text-decoration-color: rgba(166,124,82,0.5); }
+  .hours-cell .time { font-variant-numeric: tabular-nums; }
+  .hours-banner-note {
+    flex-shrink: 0;
+    color: rgba(250,248,244,0.45);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    display: none;
+  }
+  @media (min-width: 900px) {
+    .hours-banner-note { display: block; }
+  }
+  @media (max-width: 640px) {
+    .hours-banner-inner { padding: 0 0.75rem; }
+    .hours-banner-label span:not(.hours-icon-text) { display: none; }
+    .hours-banner-grid {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      mask-image: linear-gradient(90deg, transparent, black 8px, black calc(100% - 24px), transparent);
+    }
+    .hours-banner-grid::-webkit-scrollbar { display: none; }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: var(--hours-h);
+    left: 0;
+    right: 0;
+    z-index: 150;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1rem, 3vw, 3rem);
+    background: rgba(250,248,244,0.88);
+    backdrop-filter: blur(20px) saturate(1.2);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.4s var(--ease-out), box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(250,248,244,0.96);
+    box-shadow: 0 1px 0 var(--border), 0 12px 40px rgba(26,22,18,0.06);
+  }
+  .nav-logo { display: flex; flex-direction: column; gap: 2px; }
+  .nav-logo-en {
+    font-family: var(--serif);
+    font-size: clamp(15px, 2.5vw, 18px);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .nav-logo-ja {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--mist);
+    font-weight: 300;
+    max-width: 200px;
+    line-height: 1.3;
+  }
+  .nav-links {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--bronze);
+    transition: width 0.35s var(--ease-out);
+  }
+  .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+  .nav-links a:not(.nav-cta):hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--ivory);
+    padding: 10px 20px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--espresso); color: var(--ivory); }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  nav.menu-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - var(--header-total));
+    min-height: calc(100dvh - var(--header-total));
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    background: var(--ink);
+    overflow: hidden;
+  }
+  .hero-parallax-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-layer {
+    position: absolute;
+    will-change: transform;
+  }
+  .hero-layer-1 {
+    inset: -20%;
+    background:
+      radial-gradient(ellipse 80% 60% at 75% 40%, rgba(92,107,90,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 15% 85%, rgba(166,124,82,0.12) 0%, transparent 50%);
+  }
+  .hero-layer-2 {
+    width: 140%;
+    height: 140%;
+    top: -20%;
+    left: -10%;
+    background: repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 80px,
+      rgba(201,168,130,0.03) 80px,
+      rgba(201,168,130,0.03) 81px
+    );
+  }
+  .hero-layer-3 {
+    bottom: 0;
+    right: 0;
+    width: min(55vw, 520px);
+    height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(244,239,230,0.04) 100%);
+    border-left: 1px solid rgba(201,168,130,0.08);
+  }
+  .hero-vertical-text {
+    position: absolute;
+    right: clamp(1rem, 4vw, 4rem);
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-family: var(--serif);
+    font-size: clamp(72px, 12vw, 140px);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(250,248,244,0.04);
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--bronze-light);
+    opacity: 0;
+    animation: heroIn 1s var(--ease-lux) 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--bronze), transparent);
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5.5vw, 3.75rem);
+    font-weight: 400;
+    color: var(--ivory);
+    line-height: 1.35;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    animation: heroIn 1.1s var(--ease-lux) 0.35s forwards;
+  }
+  .hero-title .accent {
+    display: block;
+    font-style: italic;
+    color: var(--bronze-light);
+    font-size: 1.08em;
+    margin-top: 0.15em;
+  }
+  .hero-subtitle {
+    font-size: clamp(13px, 1.8vw, 15px);
+    color: rgba(250,248,244,0.55);
+    margin-bottom: 2.5rem;
+    max-width: 400px;
+    line-height: 2;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    opacity: 0;
+    animation: heroIn 1s var(--ease-lux) 0.5s forwards;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: heroIn 1s var(--ease-lux) 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bronze);
+    color: var(--ivory);
+    padding: 15px 28px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.25s var(--ease-out);
+    border: none;
+  }
+  .btn-primary:hover { background: var(--bronze-light); transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: rgba(250,248,244,0.8);
+    padding: 15px 24px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    border: 1px solid rgba(250,248,244,0.2);
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--bronze-light); color: var(--ivory); }
+  .hero-meta {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    padding-top: 2rem;
+    border-top: 1px solid rgba(250,248,244,0.08);
+    opacity: 0;
+    animation: heroIn 1s var(--ease-lux) 0.8s forwards;
+  }
+  .hero-meta-item { }
+  .meta-num {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--ivory);
+    line-height: 1;
+    font-weight: 400;
+  }
+  .meta-num em { font-style: normal; font-size: 0.45em; color: var(--bronze-light); vertical-align: super; margin-left: 2px; }
+  .meta-label { font-size: 9px; letter-spacing: 0.22em; color: rgba(250,248,244,0.4); margin-top: 8px; }
+
+  .hero-visual {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .hero-frame {
+    position: relative;
+    width: min(100%, 380px);
+    aspect-ratio: 4/5;
+    border: 1px solid rgba(201,168,130,0.2);
+    overflow: hidden;
+  }
+  .hero-frame::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(201,168,130,0.15);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-frame-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(160deg, var(--espresso) 0%, var(--ink) 50%, var(--sage-deep) 100%);
+  }
+  .hero-frame-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 1;
+  }
+  .lens-ring {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,130,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: lensPulse 4s ease-in-out infinite;
+  }
+  .lens-ring::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 1px dashed rgba(201,168,130,0.15);
+    animation: rotateSlow 30s linear infinite;
+  }
+  @keyframes lensPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(166,124,82,0.2); }
+    50% { box-shadow: 0 0 40px 8px rgba(166,124,82,0.15); }
+  }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+  .lens-inner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(92,107,90,0.4) 0%, transparent 70%);
+    border: 1px solid rgba(250,248,244,0.2);
+  }
+  .frame-caption {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: rgba(250,248,244,0.5);
+  }
+  .frame-badge {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    padding: 14px 16px;
+    background: rgba(26,22,18,0.75);
+    backdrop-filter: blur(8px);
+    border-left: 2px solid var(--bronze);
+    z-index: 3;
+  }
+  .frame-badge-tag { font-size: 9px; letter-spacing: 0.25em; color: var(--bronze-light); margin-bottom: 4px; }
+  .frame-badge-text { font-size: 11px; color: rgba(250,248,244,0.8); line-height: 1.6; letter-spacing: 0.05em; }
+
+  /* ── MARQUEE ── */
+  .marquee-section {
+    background: var(--parchment);
+    padding: 1.25rem 0;
+    overflow: hidden;
+    border-block: 1px solid var(--border);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    flex-shrink: 0;
+    padding: 0 2.5rem;
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--stone);
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .marquee-item::after {
+    content: '◆';
+    font-size: 6px;
+    color: var(--bronze);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 5vw, 5rem); }
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: var(--bronze);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--bronze);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.35;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.25rem;
+  }
+  .section-body {
+    font-size: 14px;
+    color: var(--stone);
+    line-height: 2;
+    max-width: 520px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── MICROSCOPE ── */
+  .microscope-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    background: var(--ivory);
+  }
+  .micro-visual {
+    background: var(--ink-soft);
+    padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+  }
+  .micro-parallax-bg {
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(circle at 40% 50%, rgba(92,107,90,0.2) 0%, transparent 45%);
+    will-change: transform;
+  }
+  .micro-watermark {
+    position: absolute;
+    bottom: -0.1em;
+    left: -0.05em;
+    font-family: var(--serif);
+    font-size: clamp(100px, 18vw, 200px);
+    color: rgba(250,248,244,0.03);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .micro-content { position: relative; z-index: 2; }
+  .micro-tag { font-size: 10px; letter-spacing: 0.3em; color: var(--bronze-light); margin-bottom: 1.5rem; }
+  .micro-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    color: var(--ivory);
+    font-weight: 400;
+    line-height: 1.45;
+    margin-bottom: 1.5rem;
+  }
+  .micro-desc {
+    font-size: 13px;
+    color: rgba(250,248,244,0.5);
+    line-height: 2;
+    font-weight: 300;
+    max-width: 360px;
+  }
+  .micro-features {
+    padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--parchment);
+  }
+  .micro-feature-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.25rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: padding-left 0.4s var(--ease-out);
+  }
+  .micro-feature-item:hover { padding-left: 8px; }
+  .micro-feature-item:last-child { border-bottom: none; }
+  .feature-num {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--bronze);
+    opacity: 0.5;
+    line-height: 1;
+  }
+  .feature-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 6px; letter-spacing: 0.04em; }
+  .feature-desc { font-size: 13px; color: var(--mist); line-height: 1.9; font-weight: 300; }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--ivory); }
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    flex-wrap: wrap;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .service-card {
+    background: var(--ivory);
+    padding: clamp(1.75rem, 3vw, 2.75rem);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s var(--ease-out);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--bronze);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out);
+  }
+  .service-card:hover { background: var(--parchment); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: var(--serif);
+    font-size: 56px;
+    color: rgba(26,22,18,0.04);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.4s;
+  }
+  .service-card:hover .service-num { color: rgba(166,124,82,0.12); }
+  .service-title { font-size: 16px; font-weight: 500; margin-bottom: 10px; letter-spacing: 0.04em; }
+  .service-desc { font-size: 12px; color: var(--mist); line-height: 1.85; font-weight: 300; }
+  .service-tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--bronze);
+    border: 1px solid var(--bronze-pale);
+    padding: 4px 10px;
+  }
+
+  /* ── PHILOSOPHY (parallax) ── */
+  .philosophy-section {
+    position: relative;
+    text-align: center;
+    padding: clamp(5rem, 12vw, 8rem) clamp(1.25rem, 5vw, 5rem);
+    overflow: hidden;
+    color: var(--ivory);
+  }
+  .philosophy-parallax {
+    position: absolute;
+    inset: -20% 0;
+    background:
+      linear-gradient(180deg, rgba(26,22,18,0.92) 0%, rgba(26,22,18,0.88) 100%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a882' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    will-change: transform;
+    z-index: 0;
+  }
+  .philosophy-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+  .philosophy-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.85;
+    letter-spacing: 0.06em;
+    margin-bottom: 2rem;
+  }
+  .philosophy-quote em { font-style: italic; color: var(--bronze-light); }
+  .philosophy-source { font-size: 11px; letter-spacing: 0.25em; color: rgba(250,248,244,0.35); }
+  .philosophy-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: clamp(3rem, 6vw, 5rem);
+    padding-top: 3rem;
+    border-top: 1px solid rgba(250,248,244,0.1);
+    text-align: left;
+  }
+  .pillar-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    color: rgba(201,168,130,0.2);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .pillar-title { font-size: 14px; margin-bottom: 8px; letter-spacing: 0.08em; }
+  .pillar-desc { font-size: 12px; color: rgba(250,248,244,0.45); line-height: 1.9; font-weight: 300; }
+
+  /* ── DOCTOR ── */
+  .doctor-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    background: var(--parchment);
+  }
+  .doctor-info {
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .doctor-card {
+    background: var(--ink);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .doctor-card-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(225deg, rgba(166,124,82,0.08) 0%, transparent 60%);
+  }
+  .doctor-name {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--ivory);
+    font-weight: 400;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .doctor-title {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--bronze-light);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .doctor-career { list-style: none; position: relative; z-index: 1; }
+  .doctor-career li {
+    font-size: 12px;
+    color: rgba(250,248,244,0.55);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(250,248,244,0.06);
+    display: flex;
+    gap: 14px;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .doctor-career li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--bronze);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .doctor-career li:last-child { border-bottom: none; }
+  .info-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 1.25rem;
+  }
+  .info-item:first-of-type { border-top: 1px solid var(--border); }
+  .info-label { font-size: 10px; letter-spacing: 0.2em; color: var(--mist); flex-shrink: 0; width: 72px; }
+  .info-value { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ── ACCESS ── */
+  .info-section { background: var(--ivory); }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    margin-top: 3rem;
+    align-items: start;
+  }
+  .schedule-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .schedule-table { width: 100%; min-width: 320px; border-collapse: collapse; }
+  .schedule-table th, .schedule-table td {
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid var(--border);
+  }
+  .schedule-table th {
+    background: var(--ink);
+    color: var(--ivory);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+  }
+  .schedule-table td { color: var(--stone); }
+  .schedule-table td.open { color: var(--sage-deep); font-weight: 500; }
+  .schedule-table td.closed { color: var(--mist); }
+  .schedule-table tr:nth-child(even) td { background: var(--parchment); }
+  .schedule-note { font-size: 11px; color: var(--mist); margin-top: 12px; line-height: 1.85; }
+  .map-area {
+    background: var(--parchment);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--border);
+    margin-top: 1.5rem;
+    color: var(--mist);
+    font-size: 12px;
+  }
+  .map-area a { color: var(--bronze); text-decoration: none; font-size: 11px; letter-spacing: 0.08em; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--sage-deep);
+    padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 5vw, 5rem);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+  .cta-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    color: var(--ivory);
+    font-weight: 400;
+  }
+  .cta-sub { font-size: 13px; color: rgba(250,248,244,0.6); margin-top: 8px; }
+  .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta-btn-ivory {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ivory);
+    color: var(--sage-deep);
+    padding: 14px 24px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.25s;
+  }
+  .cta-btn-ivory:hover { transform: translateY(-2px); }
+  .cta-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ivory);
+    padding: 14px 24px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: 1px solid rgba(250,248,244,0.3);
+    transition: border-color 0.3s;
+  }
+  .cta-btn-outline:hover { border-color: var(--ivory); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: clamp(3rem, 6vw, 4rem) clamp(1.25rem, 5vw, 5rem) 2rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .footer-logo { font-family: var(--serif); font-size: 20px; color: var(--ivory); }
+  .footer-logo-sub { font-size: 10px; letter-spacing: 0.15em; color: rgba(250,248,244,0.35); margin-top: 6px; max-width: 280px; line-height: 1.5; }
+  .footer-nav { display: flex; gap: clamp(2rem, 5vw, 4rem); flex-wrap: wrap; }
+  .footer-nav-title { font-size: 9px; letter-spacing: 0.25em; color: var(--bronze-light); margin-bottom: 14px; }
+  .footer-nav-col a {
+    display: block;
+    font-size: 12px;
+    color: rgba(250,248,244,0.45);
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .footer-nav-col a:hover { color: var(--ivory); }
+  .footer-bottom {
+    border-top: 1px solid rgba(250,248,244,0.08);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-corp { font-size: 10px; color: rgba(250,248,244,0.3); letter-spacing: 0.06em; }
+  .footer-georji { font-size: 10px; color: rgba(250,248,244,0.25); }
+  .footer-georji span { color: var(--bronze-light); }
+
+  /* ── MOBILE FAB ── */
+  .mobile-fab {
+    display: none;
+    position: fixed;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    right: 1rem;
+    z-index: 140;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .fab-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(26,22,18,0.2);
+    transition: transform 0.25s;
+  }
+  .fab-btn:active { transform: scale(0.95); }
+  .fab-phone { background: var(--ink); color: var(--ivory); }
+  .fab-book { background: var(--bronze); color: var(--ivory); }
+
+  /* ── DEMO BANNER ── */
+  .demo-banner {
+    position: fixed;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26,22,18,0.94);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(201,168,130,0.25);
+    padding: 10px 18px;
+    z-index: 199;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: calc(100vw - 2rem);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .demo-label { font-size: 9px; letter-spacing: 0.25em; color: var(--bronze-light); }
+  .demo-text { font-size: 11px; color: rgba(250,248,244,0.55); }
+  .demo-by { font-size: 10px; color: rgba(250,248,244,0.35); }
+  .demo-by strong { color: var(--bronze-light); }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s var(--ease-lux), transform 0.9s var(--ease-lux);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .philosophy-pillars { grid-template-columns: 1fr; text-align: center; }
+    .pillar-num { margin: 0 auto 0.5rem; }
+  }
+  @media (max-width: 860px) {
+    .nav-links {
+      position: fixed;
+      top: var(--header-total);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--ivory);
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    nav.menu-open .nav-links { transform: translateX(0); }
+    .nav-links a { font-size: 15px; }
+    .nav-toggle { display: flex; }
+    .nav-logo-ja { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-visual { display: none; }
+    .hero-vertical-text { display: none; }
+    .microscope-section,
+    .doctor-section { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .cta-section { grid-template-columns: 1fr; text-align: center; }
+    .cta-actions { justify-content: center; }
+    .mobile-fab { display: flex; }
+    body { padding-bottom: 56px; }
+    .demo-banner {
+      bottom: calc(68px + env(safe-area-inset-bottom));
+      font-size: 10px;
+    }
+    .footer-top { flex-direction: column; }
+  }
+  @media (max-width: 480px) {
+    :root { --hours-h: 36px; --nav-h: 56px; }
+    .hours-cell .day { font-size: 9px; }
+    .hours-cell .time { font-size: 10px; }
+    .hero-meta { flex-direction: column; gap: 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .marquee-track { animation: none; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HOURS BANNER (always visible) -->
+<aside class="hours-banner" aria-label="診療時間">
+  <div class="hours-banner-inner">
+    <div class="hours-banner-label">
+      <span class="hours-icon-text">診療時間</span>
+    </div>
+    <div class="hours-banner-grid">
+      <div class="hours-cell"><span class="day">月</span><span class="time">9:30–18:00</span></div>
+      <div class="hours-cell"><span class="day">火</span><span class="time">9:30–18:00</span></div>
+      <div class="hours-cell"><span class="day">水</span><span class="time">9:30–18:00</span></div>
+      <div class="hours-cell closed"><span class="day">木</span><span class="time">休診</span></div>
+      <div class="hours-cell"><span class="day">金</span><span class="time">9:30–18:00</span></div>
+      <div class="hours-cell"><span class="day">土</span><span class="time">9:30–18:00</span></div>
+      <div class="hours-cell closed"><span class="day">日祝</span><span class="time">休診</span></div>
+    </div>
+    <div class="hours-banner-note">※18時以降の夜間診療あり ／ 土曜は午前・午後のみ</div>
+  </div>
+</aside>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">
+    <div class="nav-logo-en">Inoue Dental Clinic</div>
+    <div class="nav-logo-ja">医療法人 井上歯科医院 川越歯科口腔外科クリニック</div>
+  </div>
+  <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="#microscope">マイクロスコープ</a>
+    <a href="#services">診療内容</a>
+    <a href="#doctor">院長紹介</a>
+    <a href="#access">アクセス</a>
+    <a href="#access" class="nav-cta">ご予約</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-parallax-wrap" aria-hidden="true">
+    <div class="hero-layer hero-layer-1" data-parallax="0.15"></div>
+    <div class="hero-layer hero-layer-2" data-parallax="0.08"></div>
+    <div class="hero-layer hero-layer-3" data-parallax="0.25"></div>
+  </div>
+  <div class="hero-vertical-text" aria-hidden="true">Precision</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">KAWAGOE · SINCE TAISHO 2</div>
+    <h1 class="hero-title">
+      見えない部分まで、
+      <span class="accent">丁寧に。</span>
+    </h1>
+    <p class="hero-subtitle">
+      大正二年の開業以来、川越の地で歩みを重ねてきた当院。マイクロスコープによる精密診療と、口腔外科専門医の技術で、お口の健康を長く守ります。
+    </p>
+    <div class="hero-actions">
+      <a href="#access" class="btn-primary">ネット予約（24時間）</a>
+      <a href="#microscope" class="btn-ghost">マイクロスコープ治療 →</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="meta-num">大正<em>2</em></div>
+        <div class="meta-label">ESTABLISHED</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="meta-num">100<em>+</em></div>
+        <div class="meta-label">YEARS</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="meta-num">4<em>科</em></div>
+        <div class="meta-label">DEPARTMENTS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-frame">
+      <div class="hero-frame-bg"></div>
+      <div class="hero-frame-content">
+        <div class="lens-ring"><div class="lens-inner"></div></div>
+        <div class="frame-caption">MICROSCOPE PRECISION</div>
+      </div>
+      <div class="frame-badge">
+        <div class="frame-badge-tag">SPECIALIST</div>
+        <div class="frame-badge-text">日本口腔外科学会認定<br>口腔外科専門医</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">マイクロスコープ精密治療</span>
+    <span class="marquee-item">口腔外科専門医在籍</span>
+    <span class="marquee-item">訪問歯科診療</span>
+    <span class="marquee-item">土曜診療</span>
+    <span class="marquee-item">18時以降 夜間診療</span>
+    <span class="marquee-item">大正2年創業</span>
+    <span class="marquee-item">マイクロスコープ精密治療</span>
+    <span class="marquee-item">口腔外科専門医在籍</span>
+    <span class="marquee-item">訪問歯科診療</span>
+    <span class="marquee-item">土曜診療</span>
+    <span class="marquee-item">18時以降 夜間診療</span>
+    <span class="marquee-item">大正2年創業</span>
+  </div>
+</div>
+
+<!-- MICROSCOPE -->
+<div class="microscope-section" id="microscope">
+  <div class="micro-visual">
+    <div class="micro-parallax-bg" data-parallax="0.2"></div>
+    <div class="micro-watermark" aria-hidden="true">01</div>
+    <div class="micro-content reveal">
+      <div class="micro-tag">FEATURE — MICROSCOPE</div>
+      <h2 class="micro-headline">
+        肉眼では見えない世界を、<br>
+        顕微鏡で正確に捉える。
+      </h2>
+      <p class="micro-desc">
+        マイクロスコープは歯の細部を高倍率で拡大し、診断・治療の精度を飛躍的に向上させます。当院では指導者資格を保有する歯科医師・衛生士が、全国でも数少ない高精度治療を提供しています。
+      </p>
+    </div>
+  </div>
+  <div class="micro-features">
+    <div class="section-eyebrow">なぜマイクロスコープか</div>
+    <div class="micro-feature-item reveal">
+      <div class="feature-num">01</div>
+      <div>
+        <div class="feature-title">初期段階での早期発見・早期治療</div>
+        <div class="feature-desc">肉眼では見えないごく小さな虫歯も初期段階で発見。不必要な削り過ぎを防ぎ、歯の寿命を延ばします。</div>
+      </div>
+    </div>
+    <div class="micro-feature-item reveal reveal-delay-1">
+      <div class="feature-num">02</div>
+      <div>
+        <div class="feature-title">根管治療の精度を大幅向上</div>
+        <div class="feature-desc">暗く狭い根管部分も明るく拡大。見逃しのない精密な処置が可能です。</div>
+      </div>
+    </div>
+    <div class="micro-feature-item reveal reveal-delay-2">
+      <div class="feature-num">03</div>
+      <div>
+        <div class="feature-title">治療の透明性・患者説明への活用</div>
+        <div class="feature-desc">治療の様子を録画・保存し、丁寧なご説明に活用。不安を解消します。</div>
+      </div>
+    </div>
+    <div class="micro-feature-item reveal reveal-delay-3">
+      <div class="feature-num">04</div>
+      <div>
+        <div class="feature-title">全国から患者様が来院する希少技術</div>
+        <div class="feature-desc">導入率は全国20%未満。指導者資格保有者が在籍し、県外からも多くの患者様にご来院いただいています。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <div class="reveal">
+      <div class="section-eyebrow">OUR SERVICES</div>
+      <h2 class="section-title">充実した診療内容で、<br>幅広いお口のお悩みに</h2>
+    </div>
+    <p class="section-body reveal" style="max-width:260px;">
+      保険診療から自費診療まで、お子様からご年配の方まで、地域に根差した医療を提供します。
+    </p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-title">マイクロスコープ治療</div>
+      <div class="service-desc">高倍率顕微鏡を使用した精密診療。根管治療・虫歯治療において、肉眼を超える精度を実現します。</div>
+      <div class="service-tag">自費診療</div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">02</div>
+      <div class="service-title">歯科口腔外科</div>
+      <div class="service-desc">日本口腔外科学会認定専門医が在籍。親知らず・口腔がん検診など難症例にも対応。大学病院と連携します。</div>
+      <div class="service-tag">保険・自費</div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">03</div>
+      <div class="service-title">小児歯科</div>
+      <div class="service-desc">お子様の成長に合わせた歯科治療。フッ素塗布・ブラッシング指導・虫歯予防までサポート。</div>
+      <div class="service-tag">保険診療</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-title">訪問歯科診療</div>
+      <div class="service-desc">通院が困難な方のご自宅や老人ホームへ訪問。訪問診療でも保険適用が可能です。</div>
+      <div class="service-tag">保険診療</div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">05</div>
+      <div class="service-title">ホワイトニング</div>
+      <div class="service-desc">歯を削らず薬剤の力で白く。オフィスホワイトニングとホームホワイトニングの2種類。</div>
+      <div class="service-tag">自費診療</div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">06</div>
+      <div class="service-title">マウスピース制作</div>
+      <div class="service-desc">顎・歯の負担軽減やスポーツ時の安全のため、オーダーメイドのマウスピースを制作します。</div>
+      <div class="service-tag">自費診療</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="philosophy-parallax" data-parallax="0.12" aria-hidden="true"></div>
+  <div class="philosophy-inner">
+    <blockquote class="philosophy-quote reveal">
+      「患者さまに合った治療をご提案するには、<br>
+      <em>ご要望やお悩みをよくお伺いし、</em><br>
+      それを踏まえた上で治療方法をご提案することが大切です。」
+    </blockquote>
+    <p class="philosophy-source reveal">— 医療法人 井上歯科医院 川越歯科口腔外科クリニック</p>
+    <div class="philosophy-pillars">
+      <div class="reveal">
+        <div class="pillar-num">I</div>
+        <div class="pillar-title">地域に根差した医療</div>
+        <div class="pillar-desc">大正2年の開業以来、100年以上にわたり川越の地で地域医療を担い続けています。</div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="pillar-num">II</div>
+        <div class="pillar-title">説明のある透明な医療</div>
+        <div class="pillar-desc">次の治療で何をされるかわからないという不安を解消するため、十分な説明と同意を徹底します。</div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="pillar-num">III</div>
+        <div class="pillar-title">最先端設備と高い技術</div>
+        <div class="pillar-desc">マイクロスコープ・CT等の最新機器を備え、専門医が高度な治療を提供します。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR -->
+<div class="doctor-section" id="doctor">
+  <div class="doctor-info">
+    <div class="section-eyebrow reveal">CLINIC DIRECTOR</div>
+    <h2 class="section-title reveal">院長紹介</h2>
+    <p class="section-body reveal">
+      歯科口腔外科の高度な専門知識と豊富な臨床経験を持つ院長が、マイクロスコープ治療から難症例まで、お一人おひとりに寄り添った治療を行います。
+    </p>
+    <div style="margin-top:1.5rem;">
+      <div class="info-item reveal">
+        <div class="info-label">専門医</div>
+        <div class="info-value">日本口腔外科学会認定<br>口腔外科専門医</div>
+      </div>
+      <div class="info-item reveal">
+        <div class="info-label">診療科目</div>
+        <div class="info-value">歯科 ／ 歯科口腔外科<br>矯正歯科 ／ 小児歯科</div>
+      </div>
+      <div class="info-item reveal">
+        <div class="info-label">特徴</div>
+        <div class="info-value">大学病院との連携 ／ マイクロスコープ指導者資格保有</div>
+      </div>
+    </div>
+  </div>
+  <div class="doctor-card">
+    <div class="doctor-card-accent" aria-hidden="true"></div>
+    <div class="doctor-name reveal">井上 勝元</div>
+    <div class="doctor-title reveal">院長 / CLINIC DIRECTOR</div>
+    <ul class="doctor-career">
+      <li class="reveal">医療法人鉄蕉会 亀田総合病院 歯科医師臨床研修医</li>
+      <li class="reveal reveal-delay-1">明海大学歯学部病態診断治療学講座 顎顔面外科学分野Ⅱ 入局</li>
+      <li class="reveal reveal-delay-2">日本口腔外科学会 認定口腔外科専門医 取得</li>
+      <li class="reveal reveal-delay-3">マイクロスコープ治療 指導者資格 取得</li>
+      <li class="reveal">医療法人 井上歯科医院 川越歯科口腔外科クリニック 院長就任</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ACCESS -->
+<section class="info-section" id="access">
+  <div class="section-eyebrow reveal">ACCESS &amp; HOURS</div>
+  <h2 class="section-title reveal">診療時間・アクセス</h2>
+  <div class="info-grid">
+    <div class="reveal">
+      <div class="schedule-wrap">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>時間</th>
+              <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>午前<br><small>9:30〜13:00</small></td>
+              <td class="open">○</td><td class="open">○</td><td class="open">○</td>
+              <td class="closed">✕</td>
+              <td class="open">○</td><td class="open">○</td><td class="closed">✕</td>
+            </tr>
+            <tr>
+              <td>午後<br><small>14:30〜18:00</small></td>
+              <td class="open">○</td><td class="open">○</td><td class="open">○</td>
+              <td class="closed">✕</td>
+              <td class="open">○</td><td class="open">○</td><td class="closed">✕</td>
+            </tr>
+            <tr>
+              <td>夜間<br><small>18:00〜</small></td>
+              <td class="open">○</td><td class="open">○</td><td class="open">○</td>
+              <td class="closed">✕</td>
+              <td class="open">○</td><td class="closed">✕</td><td class="closed">✕</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="schedule-note">
+        ※ 休診日：木曜・日曜・祝日<br>
+        ※ 土曜は午前・午後のみの診療<br>
+        ※ 夜間診療（18時以降）も対応
+      </p>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="info-item" style="border-top:1px solid var(--border);">
+        <div class="info-label">医院名</div>
+        <div class="info-value">医療法人 井上歯科医院<br>川越歯科口腔外科クリニック</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">所在地</div>
+        <div class="info-value">〒350-0811<br>埼玉県川越市小堤 14-9</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">電話</div>
+        <div class="info-value" style="font-size:1.35rem; font-family:var(--serif);">049-232-4182</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">アクセス</div>
+        <div class="info-value">東武東上線 鶴ヶ島駅 東口 より車で約5分<br>東武東上線 霞ヶ関駅より徒歩圏内<br>駐車場 あり</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">診療科目</div>
+        <div class="info-value">歯科 ／ 歯科口腔外科<br>矯正歯科 ／ 小児歯科</div>
+      </div>
+      <div class="map-area">
+        <span>埼玉県川越市小堤 14-9</span>
+        <a href="https://maps.google.com/?q=埼玉県川越市小堤14-9">Google マップで見る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="reveal">
+    <div class="cta-title">まずは、お気軽にご相談ください。</div>
+    <div class="cta-sub">24時間ネット予約受付中 ／ お電話でのご予約も承ります</div>
+  </div>
+  <div class="cta-actions reveal">
+    <a href="#" class="cta-btn-ivory">ネット予約（24時間）</a>
+    <a href="tel:049-232-4182" class="cta-btn-outline">049-232-4182</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Inoue Dental Clinic</div>
+      <div class="footer-logo-sub">医療法人 井上歯科医院 川越歯科口腔外科クリニック</div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">TREATMENT</div>
+        <a href="#microscope">マイクロスコープ治療</a>
+        <a href="#services">歯科口腔外科</a>
+        <a href="#services">小児歯科</a>
+        <a href="#services">訪問歯科診療</a>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">CLINIC</div>
+        <a href="#doctor">院長紹介</a>
+        <a href="#access">診療時間</a>
+        <a href="#access">アクセス</a>
+        <a href="#access">ご予約</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-corp">© 2024 医療法人 井上歯科医院. All Rights Reserved.</div>
+    <div class="footer-georji">Web Design by <span>Georji&Co</span> — Demo</div>
+  </div>
+</footer>
+
+<!-- MOBILE FAB -->
+<div class="mobile-fab" aria-label="クイックアクション">
+  <a href="tel:049-232-4182" class="fab-btn fab-phone" aria-label="電話する">
+    <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.4 2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.1 6.1l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.93 17z"/></svg>
+  </a>
+  <a href="#access" class="fab-btn fab-book" aria-label="予約">
+    <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+  </a>
+</div>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  <div class="demo-label">DEMO</div>
+  <div class="demo-text">GEORJI&CO制作のデモサイト</div>
+  <div class="demo-by">by <strong>Georji&Co</strong></div>
+</div>
+
+<script>
+(function () {
+  const nav = document.getElementById('mainNav');
+  const toggle = nav.querySelector('.nav-toggle');
+  const navLinks = nav.querySelector('.nav-links');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('menu-open');
+    toggle.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  navLinks.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  let ticking = false;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function updateParallax() {
+    if (reducedMotion) return;
+    const scrollY = window.scrollY;
+    parallaxEls.forEach((el) => {
+      const speed = parseFloat(el.dataset.parallax) || 0.1;
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const offset = (center - window.innerHeight / 2) * speed * 0.15;
+      el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateParallax();
+})();
+</script>
+</body>
+</html>
