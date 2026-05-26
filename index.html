@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="川越でマイクロスコープ精密治療。全国でも導入率20%未満の希少技術を、指導者資格保有の専門医が提供。医療法人 井上歯科医院 川越歯科口腔外科クリニック">
+<title>マイクロスコープ精密治療｜井上歯科医院 川越歯科口腔外科クリニック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f6f3ee;
+    --bg-dark: #0b0f12;
+    --surface: #ffffff;
+    --text: #14181c;
+    --text-soft: #5a6269;
+    --accent: #1d6b7a;
+    --accent-light: #3a9aad;
+    --accent-glow: rgba(29, 107, 122, 0.15);
+    --line: rgba(20, 24, 28, 0.1);
+    --mincho: 'Shippori Mincho', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+    --hours-h: 44px;
+    --nav-h: 60px;
+    --header: calc(var(--hours-h) + var(--nav-h));
+    --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --wrap: min(1280px, 100% - 2.5rem);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding-top: var(--header);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+
+  /* ── Live status bar ── */
+  .status-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 300;
+    height: var(--hours-h);
+    background: var(--bg-dark);
+    color: #e8eaec;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .status-bar__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    min-width: 0;
+  }
+  .status-bar__state {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    padding-right: 0.85rem;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .status-bar__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: #94a3b8;
+  }
+  .status-bar.is-open .status-bar__dot {
+    background: #4ade80;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.65);
+    animation: statusPulse 2s ease-in-out infinite;
+  }
+  .status-bar.is-break .status-bar__dot {
+    background: #fbbf24;
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+  }
+  @keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+  .status-bar__label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .status-bar.is-open .status-bar__label { color: #86efac; }
+  .status-bar.is-break .status-bar__label { color: #fde68a; }
+  .status-bar.is-closed .status-bar__label { color: #cbd5e1; }
+  .status-bar__detail {
+    flex: 1;
+    min-width: 0;
+    font-size: 11px;
+    line-height: 1.35;
+    opacity: 0.88;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .status-bar__tel {
+    flex-shrink: 0;
+    color: var(--accent-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .status-bar__tel:hover { color: #fff; }
+  @media (max-width: 640px) {
+    .status-bar__tel { display: none; }
+    .status-bar__detail { font-size: 10px; }
+    .status-bar__label { font-size: 11px; }
+  }
+
+  /* ── Nav ── */
+  .nav {
+    position: fixed;
+    top: var(--hours-h);
+    left: 0; right: 0;
+    z-index: 250;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  .nav.is-solid {
+    background: rgba(246, 243, 238, 0.92);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 var(--line);
+  }
+  .nav.is-dark {
+    background: rgba(11, 15, 18, 0.85);
+    backdrop-filter: blur(16px);
+  }
+  .nav.is-dark .nav__logo,
+  .nav.is-dark .nav__links a { color: #f6f3ee; }
+  .nav.is-dark .nav__cta { background: var(--accent-light); color: #fff; }
+  .nav__inner {
+    width: var(--wrap);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav__logo {
+    font-family: var(--mincho);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+  }
+  .nav__logo small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 400;
+    opacity: 0.55;
+    letter-spacing: 0.06em;
+  }
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+  .nav__links a {
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--text-soft);
+    transition: color 0.2s;
+  }
+  .nav__links a:hover { color: var(--accent); }
+  .nav__cta {
+    background: var(--text);
+    color: #fff;
+    padding: 0.55rem 1.1rem;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+  .nav__cta:hover { background: var(--accent); }
+  .nav__burger {
+    display: none;
+    background: none;
+    border: none;
+    width: 28px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+  .nav__burger span {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1.5px;
+    background: currentColor;
+    transition: 0.3s;
+  }
+  .nav__burger span:nth-child(1) { top: 0; }
+  .nav__burger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .nav__burger span:nth-child(3) { bottom: 0; }
+  .nav.is-open .nav__burger span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .nav.is-open .nav__burger span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav__burger span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+  /* ── Hero (microscope-first) ── */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--header));
+    min-height: calc(100dvh - var(--header));
+    display: grid;
+    align-items: end;
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero__media {
+    position: absolute;
+    inset: 0;
+  }
+  .hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.05);
+    transition: transform 8s var(--ease);
+  }
+  .hero.is-loaded .hero__media img { transform: scale(1); }
+  .hero__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(11,15,18,0.92) 0%, rgba(11,15,18,0.35) 45%, rgba(11,15,18,0.5) 100%),
+      linear-gradient(90deg, rgba(11,15,18,0.7) 0%, transparent 55%);
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    width: var(--wrap);
+    margin: 0 auto;
+    padding: 3rem 0 4.5rem;
+  }
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(29, 107, 122, 0.35);
+    border: 1px solid rgba(58, 154, 173, 0.5);
+    padding: 0.4rem 0.9rem;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+  }
+  .hero__badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #5eead4;
+    box-shadow: 0 0 12px #5eead4;
+  }
+  .hero__title {
+    font-family: var(--mincho);
+    font-size: clamp(2.25rem, 6.5vw, 4.25rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    max-width: 14ch;
+    margin-bottom: 1.25rem;
+  }
+  .hero__lead {
+    font-size: clamp(14px, 2vw, 16px);
+    max-width: 36em;
+    opacity: 0.88;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+  .hero__lead strong {
+    color: #a8e6f0;
+    font-weight: 500;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn--fill {
+    background: var(--accent-light);
+    color: #fff;
+  }
+  .btn--fill:hover { background: #4eb8c9; }
+  .btn--line {
+    border: 1px solid rgba(255,255,255,0.45);
+    color: #fff;
+  }
+  .btn--line:hover { background: rgba(255,255,255,0.08); }
+  .hero__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero__stat strong {
+    display: block;
+    font-family: var(--mincho);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .hero__stat span {
+    font-size: 12px;
+    opacity: 0.65;
+    display: block;
+    margin-top: 0.25rem;
+  }
+  .hero__scroll {
+    position: absolute;
+    right: max(1.25rem, calc((100vw - 1280px) / 2 + 1.25rem));
+    bottom: 2rem;
+    z-index: 2;
+    writing-mode: vertical-rl;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    opacity: 0.5;
+    display: none;
+  }
+  @media (min-width: 768px) { .hero__scroll { display: block; } }
+
+  /* ── Intro statement ── */
+  .statement {
+    padding: clamp(4rem, 10vw, 7rem) 0;
+    background: var(--surface);
+  }
+  .statement__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .statement__label {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .statement__title {
+    font-family: var(--mincho);
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .statement__body {
+    font-size: 15px;
+    color: var(--text-soft);
+  }
+  .statement__body p + p { margin-top: 1.25em; }
+
+  /* ── Compare (naked eye vs microscope) ── */
+  .compare {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: clamp(4rem, 8vw, 6rem) 0;
+  }
+  .compare__head {
+    width: var(--wrap);
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .compare__head h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .compare__head p { color: rgba(255,255,255,0.55); font-size: 14px; }
+  .compare__grid {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    min-height: 420px;
+  }
+  .compare__col {
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+  }
+  .compare__col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 280px;
+    filter: saturate(0.85);
+    transition: transform 6s var(--ease);
+  }
+  .compare__col:hover img { transform: scale(1.04); }
+  .compare__col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(11,15,18,0.85) 0%, transparent 50%);
+  }
+  .compare__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    z-index: 1;
+  }
+  .compare__tag {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+  .compare__caption h3 {
+    font-family: var(--mincho);
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .compare__caption p { font-size: 13px; opacity: 0.75; line-height: 1.7; }
+  .compare__col--micro { outline: 2px solid var(--accent-light); outline-offset: -2px; z-index: 1; }
+  .compare__col--micro .compare__tag { color: #7dd3e8; opacity: 1; }
+
+  /* ── Magnification story (horizontal chapters) ── */
+  .story {
+    padding: clamp(4rem, 8vw, 6rem) 0;
+    overflow: hidden;
+  }
+  .story__head {
+    width: var(--wrap);
+    margin: 0 auto 2.5rem;
+  }
+  .story__head h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.75rem, 4vw, 2.35rem);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .story__head p { color: var(--text-soft); font-size: 14px; max-width: 32em; }
+  .story__track {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0 max(1.25rem, calc((100vw - 1280px) / 2 + 1.25rem));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+  .story__track::-webkit-scrollbar { display: none; }
+  .story-card {
+    flex: 0 0 min(88vw, 380px);
+    scroll-snap-align: start;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(11,15,18,0.06);
+  }
+  .story-card__img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .story-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .story-card__body {
+    padding: 1.5rem;
+    flex: 1;
+  }
+  .story-card__num {
+    font-family: var(--mincho);
+    font-size: 2.5rem;
+    color: var(--accent-glow);
+    color: rgba(29, 107, 122, 0.25);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .story-card h3 {
+    font-family: var(--mincho);
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .story-card p { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
+
+  /* ── Full-bleed feature ── */
+  .feature-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+  .feature-split__visual {
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-split__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 320px;
+  }
+  .feature-split__content {
+    background: var(--accent);
+    color: #fff;
+    padding: clamp(2.5rem, 6vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .feature-split__content h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  .feature-split__content p {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 2;
+    margin-bottom: 1.5rem;
+  }
+  .feature-list {
+    list-style: none;
+    font-size: 13px;
+  }
+  .feature-list li {
+    padding: 0.65rem 0;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    gap: 0.75rem;
+  }
+  .feature-list li::before {
+    content: '—';
+    opacity: 0.5;
+  }
+
+  /* ── Gallery bento ── */
+  .gallery {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    background: var(--bg);
+  }
+  .gallery__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+  }
+  .gallery__title {
+    font-family: var(--mincho);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: 220px 220px;
+    gap: 10px;
+  }
+  .gallery__item {
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery__item:first-child { grid-row: span 2; }
+  .gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+  .gallery__item:hover img { transform: scale(1.05); }
+  .gallery__cap {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.65));
+    color: #fff;
+    font-size: 12px;
+  }
+
+  /* ── Doctor (microscope authority) ── */
+  .doctor {
+    padding: clamp(4rem, 8vw, 6rem) 0;
+    background: var(--surface);
+  }
+  .doctor__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  .doctor__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .doctor__avatar {
+    width: clamp(120px, 18vw, 160px);
+    height: clamp(120px, 18vw, 160px);
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--bg) 0%, var(--surface) 100%);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    box-shadow: 0 16px 40px rgba(11, 15, 18, 0.06);
+  }
+  .doctor__avatar svg {
+    width: 52%;
+    height: 52%;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.25;
+  }
+  .doctor__credentials {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--text-soft);
+    max-width: 14em;
+  }
+  .doctor__credentials strong {
+    display: block;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.35rem;
+  }
+  .doctor__label { font-size: 12px; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+  .doctor__name {
+    font-family: var(--mincho);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  .doctor__role { font-size: 13px; color: var(--text-soft); margin-bottom: 1.5rem; }
+  .doctor__text { font-size: 14px; color: var(--text-soft); margin-bottom: 1.5rem; }
+  .doctor__career {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-soft);
+    border-top: 1px solid var(--line);
+  }
+  .doctor__career li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--line);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .doctor__career li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.15rem;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ── Other services (de-emphasized) ── */
+  .services-secondary {
+    padding: clamp(3rem, 6vw, 4.5rem) 0;
+    border-top: 1px solid var(--line);
+  }
+  .services-secondary__inner { width: var(--wrap); margin: 0 auto; }
+  .services-secondary__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .services-secondary__head h2 {
+    font-family: var(--mincho);
+    font-size: 1.35rem;
+    font-weight: 500;
+  }
+  .services-secondary__head p {
+    font-size: 13px;
+    color: var(--text-soft);
+    max-width: 28em;
+  }
+  .services-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .services-tags a {
+    font-size: 13px;
+    padding: 0.65rem 1.1rem;
+    background: var(--surface);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .services-tags a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── Clinic & history strip ── */
+  .clinic-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 360px;
+  }
+  .clinic-strip__img { overflow: hidden; }
+  .clinic-strip__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 280px;
+  }
+  .clinic-strip__text {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .clinic-strip__text h2 {
+    font-family: var(--mincho);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .clinic-strip__text p {
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 2;
+  }
+
+  /* ── Access ── */
+  .access {
+    padding: clamp(4rem, 8vw, 5rem) 0;
+    background: var(--surface);
+  }
+  .access__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .access h2 {
+    font-family: var(--mincho);
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    grid-column: 1 / -1;
+  }
+  .schedule-wrap { overflow-x: auto; }
+  .schedule {
+    width: 100%;
+    min-width: 300px;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .schedule th, .schedule td {
+    border: 1px solid var(--line);
+    padding: 0.65rem 0.5rem;
+    text-align: center;
+  }
+  .schedule th {
+    background: var(--bg-dark);
+    color: #fff;
+    font-weight: 500;
+  }
+  .schedule .on { color: var(--accent); font-weight: 700; }
+  .schedule .off { color: #bbb; }
+  .schedule-note { font-size: 12px; color: var(--text-soft); margin-top: 0.75rem; }
+  .access-info { font-size: 14px; }
+  .access-info dl { display: grid; grid-template-columns: 5em 1fr; gap: 0.75rem 1rem; }
+  .access-info dt { font-size: 12px; color: var(--text-soft); }
+  .access-info dd { margin: 0; }
+  .access-info .tel {
+    font-family: var(--mincho);
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+  .access-info a { color: var(--accent); }
+  .map {
+    grid-column: 1 / -1;
+    height: 280px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .map iframe { width: 100%; height: 100%; border: 0; }
+
+  /* ── CTA ── */
+  .cta {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: clamp(3rem, 6vw, 4rem) 0;
+    text-align: center;
+  }
+  .cta__inner { width: var(--wrap); margin: 0 auto; }
+  .cta h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .cta p { font-size: 14px; opacity: 0.6; margin-bottom: 1.5rem; }
+  .cta__btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
+
+  /* ── Footer ── */
+  footer {
+    background: #060809;
+    color: rgba(255,255,255,0.45);
+    padding: 2.5rem 0;
+    font-size: 12px;
+  }
+  footer .wrap {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+  footer a:hover { color: #fff; }
+
+  /* ── Demo + mobile ── */
+  .demo-pill {
+    position: fixed;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 400;
+    background: rgba(11,15,18,0.92);
+    color: #fff;
+    font-size: 11px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    white-space: nowrap;
+    max-width: calc(100% - 2rem);
+  }
+  .demo-pill strong { color: #7dd3e8; }
+  .mobile-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    z-index: 350;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  .mobile-bar a {
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .mobile-bar .call { background: var(--bg-dark); color: #fff; }
+  .mobile-bar .book { background: var(--accent); color: #fff; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .statement__inner,
+    .doctor__inner,
+    .access__inner,
+    .feature-split,
+    .clinic-strip,
+    .compare__grid { grid-template-columns: 1fr; }
+    .doctor__inner { justify-items: center; text-align: center; }
+    .doctor__career { text-align: left; }
+    .doctor__career li { padding-left: 1rem; }
+    .gallery__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+    .gallery__item:first-child { grid-row: auto; height: 280px; }
+    .gallery__item { height: 200px; }
+    .nav__links {
+      position: fixed;
+      inset: var(--header) 0 0 0;
+      background: var(--bg);
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.35s var(--ease);
+    }
+    .nav.is-open .nav__links { transform: translateX(0); }
+    .nav__burger { display: block; }
+    .nav__links a { font-size: 1.1rem; }
+    .mobile-bar { display: grid; }
+    body { padding-bottom: 64px; }
+    .demo-pill { bottom: calc(72px + env(safe-area-inset-bottom)); font-size: 10px; }
+    .hero__scroll { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    .hero__media img { transform: none !important; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 本日の診療状況（常時表示・自動更新） -->
+<aside class="status-bar is-closed" id="statusBar" aria-live="polite" aria-atomic="true" aria-label="本日の診療状況">
+  <div class="status-bar__inner">
+    <div class="status-bar__state">
+      <span class="status-bar__dot" aria-hidden="true"></span>
+      <span class="status-bar__label" id="statusLabel">確認中…</span>
+    </div>
+    <p class="status-bar__detail" id="statusDetail">診療時間を読み込んでいます</p>
+    <a href="tel:049-232-4182" class="status-bar__tel">049-232-4182</a>
+  </div>
+</aside>
+
+<header class="nav nav--hero" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">
+      井上歯科医院
+      <small>川越歯科口腔外科クリニック</small>
+    </a>
+    <button class="nav__burger" type="button" aria-label="メニュー" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav__links">
+      <a href="#microscope">マイクロスコープ</a>
+      <a href="#story">精密治療</a>
+      <a href="#doctor">院長</a>
+      <a href="#access">アクセス</a>
+      <a href="#access" class="nav__cta">ご予約</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ヒーロー：マイクロスコープが主役 -->
+<section class="hero" id="top">
+  <div class="hero__media">
+    <img
+      src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=2000&q=80"
+      alt="プロフェッショナルで清潔感のある、モダンな歯科診療室・医療機器の風景"
+      width="2000"
+      height="1333"
+      fetchpriority="high"
+    >
+  </div>
+  <div class="hero__content">
+    <p class="hero__badge">全国でも導入率 20% 未満の希少設備</p>
+    <h1 class="hero__title">顕微鏡で、<br>歯を治す。</h1>
+    <p class="hero__lead">
+      川越歯科口腔外科クリニックは、<strong>マイクロスコープを標準装備</strong>した精密治療の拠点です。
+      肉眼では見えない初期の虫歯や根管の細部まで——指導者資格を持つスタッフが、丁寧に診る・削る・説明する。
+    </p>
+    <div class="hero__actions">
+      <a href="#microscope" class="btn btn--fill">マイクロスコープ治療とは</a>
+      <a href="#access" class="btn btn--line">診療時間・ご予約</a>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <strong>20%未満</strong>
+        <span>全国の歯科医院が導入</span>
+      </div>
+      <div class="hero__stat">
+        <strong>指導者</strong>
+        <span>医師・衛生士が資格保有</span>
+      </div>
+      <div class="hero__stat">
+        <strong>大正2年</strong>
+        <span>川越で続く歯科医療</span>
+      </div>
+    </div>
+  </div>
+  <span class="hero__scroll" aria-hidden="true">SCROLL</span>
+</section>
+
+<!-- 一言で差別化 -->
+<section class="statement reveal" id="microscope">
+  <div class="statement__inner">
+    <div>
+      <p class="statement__label">当院の中心にあるもの</p>
+      <h2 class="statement__title">
+        「見えない」から、<br>
+        削りすぎない治療へ。
+      </h2>
+    </div>
+    <div class="statement__body">
+      <p>
+        マイクロスコープ（歯科用顕微鏡）は、歯の表面だけでなく根管の奥や微細な亀裂までを拡大して捉える装置です。当院では保険診療・自費診療を問わず、難しい症例ほど顕微鏡の視野に頼る——それが私たちの当たり前です。
+      </p>
+      <p>
+        他院で「もう抜歯しかない」と言われた方、何度も同じ歯を治した方、説明を丁寧に聞きたい方。マイクロスコープは、そうした方のための技術でもあります。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 肉眼 vs マイクロ -->
+<section class="compare reveal" aria-labelledby="compare-title">
+  <div class="compare__head">
+    <h2 id="compare-title">同じ歯でも、見える世界が違う</h2>
+    <p>拡大しない診療と、マイクロスコープ診療では判断できる範囲がまったく異なります</p>
+  </div>
+  <div class="compare__grid">
+    <div class="compare__col">
+      <img
+        src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80"
+        alt="一般的な歯科器具を使った治療の手元・診察風景"
+        width="1200"
+        height="800"
+        loading="lazy"
+      >
+      <div class="compare__caption">
+        <p class="compare__tag">CONVENTIONAL</p>
+        <h3>肉眼・拡大鏡での診察</h3>
+        <p>初期の虫歯や根管の分岐は見落とされやすく、結果的に多く削る・抜歯につながることも。</p>
+      </div>
+    </div>
+    <div class="compare__col compare__col--micro">
+      <img
+        src="https://images.unsplash.com/photo-1770321119305-f191c09c5801?auto=format&fit=crop&w=1200&q=80"
+        alt="モニターと精密器具を備えた、清潔な歯科用マイクロスコープ治療の設備"
+        width="1200"
+        height="800"
+        loading="lazy"
+      >
+      <div class="compare__caption">
+        <p class="compare__tag">MICROSCOPE</p>
+        <h3>マイクロスコープでの診察</h3>
+        <p>最大20倍以上の拡大。病変を早期に発見し、必要最小限の処置で歯を残す方向へ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4つの精密治療（横スクロール） -->
+<section class="story reveal" id="story">
+  <div class="story__head">
+    <h2>マイクロスコープでできること</h2>
+    <p>当院が力を入れている精密治療の領域です。スワイプしてご覧ください。</p>
+  </div>
+  <div class="story__track">
+    <article class="story-card">
+      <div class="story-card__img">
+        <img
+          src="https://images.unsplash.com/photo-1564420228450-d9a5bc8d6565?auto=format&fit=crop&w=800&q=80"
+          alt="根管治療のための歯科医師の手元と精密な処置"
+          width="800"
+          height="600"
+          loading="lazy"
+        >
+      </div>
+      <div class="story-card__body">
+        <div class="story-card__num">01</div>
+        <h3>根管治療（神経の治療）</h3>
+        <p>細い根管の奥や分岐部を顕微鏡で確認。見逃しのない清掃・充填で、抜歯回避の可能性を高めます。</p>
+      </div>
+    </article>
+    <article class="story-card">
+      <div class="story-card__img">
+        <img
+          src="https://images.unsplash.com/photo-1777443726993-8f9c8e96e46e?auto=format&fit=crop&w=800&q=80"
+          alt="タブレットの3D歯科データを確認する診断の様子"
+          width="800"
+          height="600"
+          loading="lazy"
+        >
+      </div>
+      <div class="story-card__body">
+        <div class="story-card__num">02</div>
+        <h3>初期虫歯の早期発見</h3>
+        <p>レントゲンでも写りにくい小さな虫歯を、拡大視野で発見。削る量を抑え、歯の寿命を延ばします。</p>
+      </div>
+    </article>
+    <article class="story-card">
+      <div class="story-card__img">
+        <img
+          src="https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&fit=crop&w=800&q=80"
+          alt="モニターを見ながら患者さまに治療内容を説明する歯科医師"
+          width="800"
+          height="600"
+          loading="lazy"
+        >
+      </div>
+      <div class="story-card__body">
+        <div class="story-card__num">03</div>
+        <h3>モニターでの治療説明</h3>
+        <p>顕微鏡の映像を記録し、患者さまの目の前で「どこを、なぜ治すか」を共有。不安を減らす透明な医療です。</p>
+      </div>
+    </article>
+    <article class="story-card">
+      <div class="story-card__img">
+        <img
+          src="https://images.unsplash.com/photo-1770321119305-f191c09c5801?auto=format&fit=crop&w=800&q=80"
+          alt="モニターと精密器具を備えた先進的な歯科医療設備"
+          width="800"
+          height="600"
+          loading="lazy"
+        >
+      </div>
+      <div class="story-card__body">
+        <div class="story-card__num">04</div>
+        <h3>再治療・難症例</h3>
+        <p>他院で完治しなかった歯、複雑な根管形態にも対応。県外からご来院いただく症例も少なくありません。</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- フルブリード訴求 -->
+<section class="feature-split reveal">
+  <div class="feature-split__visual">
+    <img
+      src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1400&q=80"
+      alt="歯科衛生士による丁寧なケアと、チームで支える精密治療"
+      width="1400"
+      height="933"
+      loading="lazy"
+    >
+  </div>
+  <div class="feature-split__content">
+    <h2>指導者がいるから、<br>チーム全体が「精密」になる</h2>
+    <p>
+      マイクロスコープは設備を入れるだけでは機能しません。当院では歯科医師・歯科衛生士の双方が指導者資格を持ち、日常の診療・メンテナンスの場面でも顕微鏡の視野を共有しています。
+    </p>
+    <ul class="feature-list">
+      <li>日本口腔外科学会認定 口腔外科専門医が監修</li>
+      <li>大学病院との連携で難症例に対応</li>
+      <li>マイクロスコープ治療の指導者資格を保有</li>
+      <li>全国から患者さまが来院する希少な体制</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 院内ギャラリー -->
+<section class="gallery reveal">
+  <div class="gallery__inner">
+    <h2 class="gallery__title">診療環境</h2>
+    <div class="gallery__grid">
+      <div class="gallery__item">
+        <img
+          src="https://images.unsplash.com/photo-1704455306251-b4634215d98f?auto=format&fit=crop&w=1000&q=80"
+          alt="落ち着いた雰囲気の歯科診療室・ユニット"
+          width="1000"
+          height="750"
+          loading="lazy"
+        >
+        <span class="gallery__cap">落ち着いた診療ユニット</span>
+      </div>
+      <div class="gallery__item">
+        <img
+          src="https://images.unsplash.com/photo-1770321119305-f191c09c5801?auto=format&fit=crop&w=600&q=80"
+          alt="マイクロスコープとモニターを備えた精密治療用設備"
+          width="600"
+          height="450"
+          loading="lazy"
+        >
+        <span class="gallery__cap">マイクロスコープ設備</span>
+      </div>
+      <div class="gallery__item">
+        <img
+          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80"
+          alt="白を基調とした清潔な歯科医院の洗面・衛生スペース"
+          width="600"
+          height="450"
+          loading="lazy"
+        >
+        <span class="gallery__cap">丁寧な処置の様子</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 院長（マイクロの権威性） -->
+<section class="doctor reveal" id="doctor">
+  <div class="doctor__inner">
+    <div class="doctor__aside">
+      <div class="doctor__avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="7" r="3.5"/>
+          <path d="M5 20v-0.5a7 7 0 0 1 14 0V20"/>
+        </svg>
+      </div>
+      <div class="doctor__credentials">
+        <strong>マイクロスコープ治療 指導者</strong>
+        日本口腔外科学会認定<br>口腔外科専門医
+      </div>
+    </div>
+    <div>
+      <p class="doctor__label">院長紹介</p>
+      <h2 class="doctor__name">井上 勝元</h2>
+      <p class="doctor__role">医療法人 井上歯科医院 川越歯科口腔外科クリニック 院長</p>
+      <p class="doctor__text">
+        口腔外科の専門知識とマイクロスコープ治療の経験を活かし、「削る・抜く」以外の選択肢を一緒に探します。顕微鏡の映像を見ながら、納得いただいたうえで治療を進める——それが私の診療スタイルです。
+      </p>
+      <ul class="doctor__career">
+        <li>医療法人鉄蕉会 亀田総合病院 歯科医師臨床研修医</li>
+        <li>明海大学歯学部 顎顔面外科学分野 入局</li>
+        <li>日本口腔外科学会 認定口腔外科専門医 取得</li>
+        <li>マイクロスコープ治療 指導者資格 取得</li>
+        <li>当院 院長就任</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- その他診療（サブ） -->
+<section class="services-secondary reveal">
+  <div class="services-secondary__inner">
+    <div class="services-secondary__head">
+      <div>
+        <h2>その他の診療</h2>
+        <p>マイクロスコープ以外にも、口腔外科・小児・訪問など地域のニーズに応えます。</p>
+      </div>
+    </div>
+    <div class="services-tags">
+      <a href="#access">歯科口腔外科</a>
+      <a href="#access">小児歯科</a>
+      <a href="#access">訪問歯科診療</a>
+      <a href="#access">ホワイトニング</a>
+      <a href="#access">マウスピース制作</a>
+      <a href="#access">矯正歯科</a>
+    </div>
+  </div>
+</section>
+
+<!-- 川越・歴史 -->
+<section class="clinic-strip reveal">
+  <div class="clinic-strip__img">
+    <img
+      src="https://images.unsplash.com/photo-1680827237099-75f88f4264f1?auto=format&fit=crop&w=1200&q=80"
+      alt="川越・小江戸の蔵造りの街並み（川越市の歴史的な町並み）"
+      width="1200"
+      height="800"
+      loading="lazy"
+    >
+  </div>
+  <div class="clinic-strip__text">
+    <h2>大正2年から、川越の地で</h2>
+    <p>
+      100年以上にわたり地域の皆さまのお口の健康を支えてきた井上歯科医院。その伝統のなかで、私たちは「精密」の技術——マイクロスコープ——を次の世代の標準にしようとしています。
+    </p>
+  </div>
+</section>
+
+<!-- アクセス -->
+<section class="access reveal" id="access">
+  <div class="access__inner">
+    <h2>診療時間・アクセス</h2>
+    <div>
+      <div class="schedule-wrap">
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th>時間</th>
+              <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>午前<small>9:30–13:00</small></td>
+              <td class="on">○</td><td class="on">○</td><td class="on">○</td>
+              <td class="off">—</td><td class="on">○</td><td class="on">○</td><td class="off">—</td>
+            </tr>
+            <tr>
+              <td>午後<small>14:30–18:00</small></td>
+              <td class="on">○</td><td class="on">○</td><td class="on">○</td>
+              <td class="off">—</td><td class="on">○</td><td class="on">○</td><td class="off">—</td>
+            </tr>
+            <tr>
+              <td>夜間<small>18:00〜</small></td>
+              <td class="on">○</td><td class="on">○</td><td class="on">○</td>
+              <td class="off">—</td><td class="on">○</td><td class="off">—</td><td class="off">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="schedule-note">休診：木・日・祝 ／ 土曜は午前・午後のみ ／ 夜間診療あり</p>
+    </div>
+    <div class="access-info">
+      <dl>
+        <dt>医院名</dt>
+        <dd>医療法人 井上歯科医院<br>川越歯科口腔外科クリニック</dd>
+        <dt>住所</dt>
+        <dd>〒350-0811<br>埼玉県川越市小堤 14-9</dd>
+        <dt>電話</dt>
+        <dd class="tel"><a href="tel:049-232-4182">049-232-4182</a></dd>
+        <dt>アクセス</dt>
+        <dd>東武東上線 鶴ヶ島駅東口より車約5分<br>霞ヶ関駅より徒歩圏内／駐車場あり</dd>
+      </dl>
+    </div>
+    <div class="map">
+      <iframe
+        title="Googleマップ"
+        src="https://maps.google.com/maps?q=%E5%9F%BC%E7%8E%89%E7%9C%8C%E5%B7%9D%E8%B6%8A%E5%B8%82%E5%B0%8F%E5%A0%8014-9&hl=ja&z=16&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta__inner reveal">
+    <h2>マイクロスコープ治療のご相談は、お気軽に</h2>
+    <p>24時間ネット予約受付 ／ お電話 049-232-4182</p>
+    <div class="cta__btns">
+      <a href="#access" class="btn btn--fill">ネット予約</a>
+      <a href="tel:049-232-4182" class="btn btn--line">電話する</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 医療法人 井上歯科医院</span>
+    <span>Web Design Demo — <a href="#">Georji&Co</a></span>
+  </div>
+</footer>
+
+<div class="mobile-bar" aria-label="クイック操作">
+  <a href="tel:049-232-4182" class="call">電話</a>
+  <a href="#access" class="book">予約・診療時間</a>
+</div>
+
+<div class="demo-pill">
+  <span>DEMO</span>
+  <span>GEORJI&CO 制作提案</span>
+  <strong>アポイント用サンプル</strong>
+</div>
+
+<script>
+(function () {
+  /* ── 診療状況バナー（日本時間） ── */
+  const statusBar = document.getElementById('statusBar');
+  const statusLabel = document.getElementById('statusLabel');
+  const statusDetail = document.getElementById('statusDetail');
+
+  const DAY_NAMES = ['日', '月', '火', '水', '木', '金', '土'];
+
+  function jstMinutes(date) {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Tokyo',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).formatToParts(date);
+    const h = Number(parts.find((p) => p.type === 'hour').value);
+    const m = Number(parts.find((p) => p.type === 'minute').value);
+    return h * 60 + m;
+  }
+
+  function jstWeekday(date) {
+    const wd = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short',
+    }).format(date);
+    return { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[wd];
+  }
+
+  /** @returns {{ slots: {start:number,end:number,label:string}[] } | null} */
+  function scheduleForDay(day) {
+    if (day === 0 || day === 4) return null;
+    const slots = [
+      { start: 9 * 60 + 30, end: 13 * 60, label: '午前診療' },
+      { start: 14 * 60 + 30, end: 18 * 60, label: '午後診療' },
+    ];
+    if (day !== 6) {
+      slots.push({ start: 18 * 60, end: 21 * 60, label: '夜間診療' });
+    }
+    return { slots };
+  }
+
+  function formatTime(min) {
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+    return `${h}:${m.toString().padStart(2, '0')}`;
+  }
+
+  function getClinicStatus(now = new Date()) {
+    const day = jstWeekday(now);
+    const min = jstMinutes(now);
+    const schedule = scheduleForDay(day);
+
+    if (!schedule) {
+      const reasons = { 0: '日曜・祝日', 4: '木曜' };
+      return {
+        kind: 'closed',
+        label: '休診中',
+        detail: `本日は${reasons[day] || '休診日'}です`,
+      };
+    }
+
+    for (const slot of schedule.slots) {
+      if (min >= slot.start && min < slot.end) {
+        return {
+          kind: 'open',
+          label: '診療中',
+          detail: `現在 ${slot.label}（${formatTime(slot.end)}まで）`,
+        };
+      }
+    }
+
+    if (min >= 13 * 60 && min < 14 * 60 + 30) {
+      return {
+        kind: 'break',
+        label: '昼休み',
+        detail: '14:30より午後の診療を開始します',
+      };
+    }
+
+    const next = schedule.slots.find((s) => min < s.start);
+    if (next) {
+      return {
+        kind: 'closed',
+        label: '診療時間外',
+        detail: `次の診療は ${formatTime(next.start)} から（${next.label}）`,
+      };
+    }
+
+    return {
+      kind: 'closed',
+      label: '本日の診療終了',
+      detail: 'お急ぎの場合はお電話ください',
+    };
+  }
+
+  function renderClinicStatus() {
+    const s = getClinicStatus();
+    statusBar.classList.remove('is-open', 'is-closed', 'is-break');
+    statusBar.classList.add(
+      s.kind === 'open' ? 'is-open' : s.kind === 'break' ? 'is-break' : 'is-closed'
+    );
+    statusLabel.textContent = s.label;
+    const dayName = DAY_NAMES[jstWeekday(new Date())];
+    statusDetail.textContent = `${dayName}曜 ${s.detail}`;
+  }
+
+  renderClinicStatus();
+  setInterval(renderClinicStatus, 60 * 1000);
+
+  const nav = document.getElementById('nav');
+  const hero = document.querySelector('.hero');
+  const burger = nav.querySelector('.nav__burger');
+  const links = nav.querySelector('.nav__links');
+
+  window.addEventListener('load', () => hero.classList.add('is-loaded'));
+
+  function updateNav() {
+    const heroBottom = hero.offsetTop + hero.offsetHeight;
+    const y = window.scrollY;
+    const inHero = y < heroBottom - nav.offsetHeight - 20;
+
+    nav.classList.toggle('is-dark', inHero);
+    nav.classList.toggle('is-solid', !inHero);
+    nav.classList.toggle('nav--hero', inHero);
+  }
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  links.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+})();
+</script>
+</body>
+</html>
