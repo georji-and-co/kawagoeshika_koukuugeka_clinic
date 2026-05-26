@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="川越でマイクロスコープ精密治療。全国でも導入率20%未満の希少技術を、指導者資格保有の専門医が提供。医療法人 井上歯科医院 川越歯科口腔外科クリニック">
-<title>マイクロスコープ精密治療｜井上歯科医院 川越歯科口腔外科クリニック</title>
+<meta name="description" content="埼玉県川越市の医療法人 井上歯科医院 川越歯科口腔外科クリニック。口腔外科・有病者歯科・インプラント・訪問診療。ほぼすべての治療をマイクロスコープで、モニターで納得できる治療を。">
+<title>川越歯科口腔外科クリニック｜医療法人 井上歯科医院（川越・鶴ヶ島・坂戸）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -742,6 +742,248 @@
     color: var(--accent);
   }
 
+  .pillars {
+    padding: clamp(3rem, 6vw, 4.5rem) 0;
+    background: var(--bg);
+  }
+  .pillars__inner { width: var(--wrap); margin: 0 auto; }
+  .pillars__head { margin-bottom: 2rem; max-width: 40em; }
+  .pillars__head h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .pillars__head p { font-size: 14px; color: var(--text-soft); line-height: 1.9; }
+  .pillars__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .pillar-card {
+    background: var(--surface);
+    padding: 1.35rem 1.25rem;
+    border: 1px solid var(--line);
+  }
+  .pillar-card h3 {
+    font-family: var(--mincho);
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.65rem;
+    color: var(--accent);
+  }
+  .pillar-card p { font-size: 12px; color: var(--text-soft); line-height: 1.85; }
+
+  .visible-treat {
+    padding: clamp(4rem, 8vw, 5.5rem) 0;
+    background: var(--bg-dark);
+    color: #fff;
+  }
+  .visible-treat__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .visible-treat__label {
+    font-size: 12px;
+    color: #7dd3e8;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .visible-treat h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.5rem, 3.5vw, 2.15rem);
+    font-weight: 500;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+  .visible-treat__body { font-size: 14px; opacity: 0.82; line-height: 2; }
+  .visible-treat__body p + p { margin-top: 1em; }
+  .visible-treat__list {
+    list-style: none;
+    margin-top: 1.5rem;
+    font-size: 13px;
+  }
+  .visible-treat__list li {
+    padding: 0.6rem 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .visible-treat__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    width: 5px;
+    height: 5px;
+    background: var(--accent-light);
+    border-radius: 50%;
+  }
+  .visible-treat__visual {
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+  }
+  .visible-treat__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 280px;
+  }
+
+  .trust {
+    padding: clamp(3.5rem, 7vw, 5rem) 0;
+    background: var(--surface);
+  }
+  .trust__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  .trust h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .trust__lead {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 2;
+    margin-bottom: 1.25rem;
+  }
+  .trust__items {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .trust__items li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--line);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+  .trust__items li::before {
+    content: attr(data-num);
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .team {
+    padding: clamp(4rem, 8vw, 5.5rem) 0;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+  }
+  .team__inner { width: var(--wrap); margin: 0 auto; }
+  .team__head { margin-bottom: 2rem; max-width: 36em; }
+  .team__head h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .team__head p { font-size: 14px; color: var(--text-soft); }
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .team-card {
+    background: var(--surface);
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+  }
+  .team-card__role {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+  }
+  .team-card h3 {
+    font-family: var(--mincho);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+  .team-card p { font-size: 12px; color: var(--text-soft); line-height: 1.7; }
+  .team__note {
+    margin-top: 1.5rem;
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service-item {
+    background: var(--surface);
+    padding: 1.35rem 1.5rem;
+  }
+  .service-item h3 {
+    font-family: var(--mincho);
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .service-item p { font-size: 12px; color: var(--text-soft); line-height: 1.85; }
+
+  .related-clinic {
+    grid-column: 1 / -1;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 1.25rem 1.5rem;
+    font-size: 13px;
+    line-height: 1.85;
+  }
+  .related-clinic strong { display: block; font-family: var(--mincho); font-weight: 500; margin-bottom: 0.35rem; }
+  .related-clinic a { color: var(--accent); }
+
+  .policy {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+  }
+  .policy details {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    padding: 0;
+  }
+  .policy summary {
+    cursor: pointer;
+    padding: 1rem 1.25rem;
+    font-size: 13px;
+    font-weight: 500;
+    list-style: none;
+  }
+  .policy summary::-webkit-details-marker { display: none; }
+  .policy__body {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.9;
+    border-top: 1px solid var(--line);
+  }
+  .policy__body p + p { margin-top: 0.75em; }
+
+  footer .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+  }
+
   /* ── Clinic & history strip ── */
   .clinic-strip {
     display: grid;
@@ -922,7 +1164,11 @@
     .access__inner,
     .feature-split,
     .clinic-strip,
-    .compare__grid { grid-template-columns: 1fr; }
+    .compare__grid,
+    .visible-treat__inner,
+    .trust__inner,
+    .pillars__grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
     .doctor__inner { justify-items: center; text-align: center; }
     .doctor__career { text-align: left; }
     .doctor__career li { padding-left: 1rem; }
@@ -981,11 +1227,11 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="nav__links">
-      <a href="#microscope">マイクロスコープ</a>
-      <a href="#story">精密治療</a>
-      <a href="#doctor">院長</a>
+      <a href="#services">診療科目</a>
+      <a href="#microscope">マイクロ</a>
+      <a href="#team">医師</a>
       <a href="#access">アクセス</a>
-      <a href="#access" class="nav__cta">ご予約</a>
+      <a href="tel:049-232-4182" class="nav__cta">お電話</a>
     </nav>
   </div>
 </header>
@@ -1002,11 +1248,10 @@
     >
   </div>
   <div class="hero__content">
-    <p class="hero__badge">全国でも導入率 20% 未満の希少設備</p>
-    <h1 class="hero__title">顕微鏡で、<br>歯を治す。</h1>
+    <p class="hero__badge">口腔外科・有病者歯科・インプラント・訪問診療</p>
+    <h1 class="hero__title">見えるから、<br>納得できる治療。</h1>
     <p class="hero__lead">
-      川越歯科口腔外科クリニックは、<strong>マイクロスコープを標準装備</strong>した精密治療の拠点です。
-      肉眼では見えない初期の虫歯や根管の細部まで——指導者資格を持つスタッフが、丁寧に診る・削る・説明する。
+      歯科治療の良し悪しは、患者さまご自身では分かりにくいものです。当院では<strong>ほぼすべての治療をマイクロスコープ（手術用顕微鏡）で実施</strong>し、ミクロン単位の処置を大型モニターにリアルタイムで映し出します。「見えないから任せる」のではなく、<strong>ご自身の目で確かめる</strong>医療を目指しています。
     </p>
     <div class="hero__actions">
       <a href="#microscope" class="btn btn--fill">マイクロスコープ治療とは</a>
@@ -1014,16 +1259,16 @@
     </div>
     <div class="hero__stats">
       <div class="hero__stat">
-        <strong>20%未満</strong>
-        <span>全国の歯科医院が導入</span>
+        <strong>ほぼすべて</strong>
+        <span>の治療をマイクロスコープで</span>
       </div>
       <div class="hero__stat">
-        <strong>指導者</strong>
-        <span>医師・衛生士が資格保有</span>
+        <strong>モニター</strong>
+        <span>にリアルタイム映像</span>
       </div>
       <div class="hero__stat">
-        <strong>大正2年</strong>
-        <span>川越で続く歯科医療</span>
+        <strong>川越</strong>
+        <span>鶴ヶ島・坂戸エリア</span>
       </div>
     </div>
   </div>
@@ -1034,19 +1279,47 @@
 <section class="statement reveal" id="microscope">
   <div class="statement__inner">
     <div>
-      <p class="statement__label">当院の中心にあるもの</p>
+      <p class="statement__label">マイクロスコープ精密治療</p>
       <h2 class="statement__title">
-        「見えない」から、<br>
-        削りすぎない治療へ。
+        歯科治療の良し悪しは、<br>
+        患者さまでは分かりにくい。
       </h2>
     </div>
     <div class="statement__body">
       <p>
-        マイクロスコープ（歯科用顕微鏡）は、歯の表面だけでなく根管の奥や微細な亀裂までを拡大して捉える装置です。当院では保険診療・自費診療を問わず、難しい症例ほど顕微鏡の視野に頼る——それが私たちの当たり前です。
+        顕微鏡（マイクロスコープ）を使った治療の特徴は、肉眼では見えないほど小さな虫歯を初期段階で発見できること、暗く狭い根管部分も明るく拡大できることです。当院では難しい症例ほど顕微鏡の視野を頼り、保険・自費を問わず精密な処置を行います。
       </p>
       <p>
-        他院で「もう抜歯しかない」と言われた方、何度も同じ歯を治した方、説明を丁寧に聞きたい方。マイクロスコープは、そうした方のための技術でもあります。
+        他院で「抜歯しかない」と言われた方、何度も同じ歯を治療された方、説明を丁寧に聞きたい方——マイクロスコープは、そうした方の選択肢を広げる技術でもあります。
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- 見える治療（公式メッセージ） -->
+<section class="visible-treat reveal" id="visible">
+  <div class="visible-treat__inner">
+    <div>
+      <p class="visible-treat__label">当院の取り組み</p>
+      <h2>「見えるから納得できる」<br>透明な医療</h2>
+      <div class="visible-treat__body">
+        <p>説明だけでは伝わりにくい治療の精密さ・丁寧さを、当院では可視化しています。</p>
+        <p>当院は、すべての診療に真剣に、全力で取り組んでいます。</p>
+      </div>
+      <ul class="visible-treat__list">
+        <li>ほぼすべての治療をマイクロスコープ（手術用顕微鏡）で実施</li>
+        <li>ミクロン単位の処置を、大型モニターにリアルタイム表示</li>
+        <li>治療の精密さ・丁寧さを、患者さまご自身が目で確認</li>
+      </ul>
+    </div>
+    <div class="visible-treat__visual">
+      <img
+        src="https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&fit=crop&w=1200&q=80"
+        alt="モニターに映像を映しながら歯科治療の説明をする様子"
+        width="1200"
+        height="800"
+        loading="lazy"
+      >
     </div>
   </div>
 </section>
@@ -1089,11 +1362,39 @@
   </div>
 </section>
 
+<!-- 標榜診療（公式4本柱） -->
+<section class="pillars reveal" id="services">
+  <div class="pillars__inner">
+    <div class="pillars__head">
+      <h2>診療科目</h2>
+      <p>川越・鶴ヶ島・坂戸エリアの患者さまに、口腔外科を中心とした専門的な歯科医療を提供しています。</p>
+    </div>
+    <div class="pillars__grid">
+      <article class="pillar-card">
+        <h3>口腔外科</h3>
+        <p>口のなか・顎・顔面の疾患を扱います。親知らずの抜歯、粘膜の病変、腫れなど、お口の不安はご相談ください。</p>
+      </article>
+      <article class="pillar-card">
+        <h3>有病者歯科</h3>
+        <p>全身の合併症をお持ちの方のための診療です。全身疾患があり歯科治療に不安のある方もご相談ください。</p>
+      </article>
+      <article class="pillar-card">
+        <h3>インプラント</h3>
+        <p>失った歯の機能と見た目を回復する治療。顎の骨にインプラント体を埋め込み、その上に人工の歯を装着します。</p>
+      </article>
+      <article class="pillar-card">
+        <h3>訪問診療</h3>
+        <p>通院が困難な方へ、ご自宅や施設へ伺い歯科治療を行います。地域で暮らす方のお口の健康を支えます。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- 4つの精密治療（横スクロール） -->
 <section class="story reveal" id="story">
   <div class="story__head">
     <h2>マイクロスコープでできること</h2>
-    <p>当院が力を入れている精密治療の領域です。スワイプしてご覧ください。</p>
+    <p>顕微鏡歯科の領域を中心に、当院が力を入れている精密治療です。スワイプしてご覧ください。</p>
   </div>
   <div class="story__track">
     <article class="story-card">
@@ -1168,22 +1469,39 @@
   <div class="feature-split__visual">
     <img
       src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1400&q=80"
-      alt="歯科衛生士による丁寧なケアと、チームで支える精密治療"
+      alt="クラスB滅菌器など、世界基準の衛生管理設備を備えた歯科医院"
       width="1400"
       height="933"
       loading="lazy"
     >
   </div>
   <div class="feature-split__content">
-    <h2>指導者がいるから、<br>チーム全体が「精密」になる</h2>
+    <h2>当たり前のことを、<br>確実に。</h2>
     <p>
-      マイクロスコープは設備を入れるだけでは機能しません。当院では歯科医師・歯科衛生士の双方が指導者資格を持ち、日常の診療・メンテナンスの場面でも顕微鏡の視野を共有しています。
+      当院ではクラスB滅菌器をはじめとする世界基準の滅菌設備を導入しています。それ以上に大切なのは、「当たり前のことを、しっかりと行うこと」だと考えています。
     </p>
     <ul class="feature-list">
-      <li>日本口腔外科学会認定 口腔外科専門医が監修</li>
-      <li>大学病院との連携で難症例に対応</li>
-      <li>マイクロスコープ治療の指導者資格を保有</li>
-      <li>全国から患者さまが来院する希少な体制</li>
+      <li>患者さまごとに基本セットの下敷きシートを交換</li>
+      <li>お口の中を触れた手袋では、治療部位以外には触れない</li>
+      <li>タービンなど全器具を個別パッキング・毎回滅菌</li>
+      <li>患者さま同士の感染が起こらないよう院内感染対策を徹底</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 感染対策・衛生管理 -->
+<section class="trust reveal" id="trust">
+  <div class="trust__inner">
+    <div>
+      <h2>安心して診療を受けていただくために</h2>
+      <p class="trust__lead">
+        衛生管理——当たり前のことを、確実に。どうぞ安心してご来院ください。
+      </p>
+    </div>
+    <ul class="trust__items">
+      <li data-num="1">患者さまごとに基本セットの下敷きシートを交換</li>
+      <li data-num="2">患者さまのお口の中を触れた手袋では、治療部位以外には触れない</li>
+      <li data-num="3">切削用タービンなど全ての器具は、個別にパッキング・毎回滅菌</li>
     </ul>
   </div>
 </section>
@@ -1201,7 +1519,7 @@
           height="750"
           loading="lazy"
         >
-        <span class="gallery__cap">落ち着いた診療ユニット</span>
+        <span class="gallery__cap">滅菌・衛生管理を徹底した診療室</span>
       </div>
       <div class="gallery__item">
         <img
@@ -1211,7 +1529,7 @@
           height="450"
           loading="lazy"
         >
-        <span class="gallery__cap">マイクロスコープ設備</span>
+        <span class="gallery__cap">マイクロスコープ・大型モニター</span>
       </div>
       <div class="gallery__item">
         <img
@@ -1221,7 +1539,7 @@
           height="450"
           loading="lazy"
         >
-        <span class="gallery__cap">丁寧な処置の様子</span>
+        <span class="gallery__cap">清潔で落ち着いた院内</span>
       </div>
     </div>
   </div>
@@ -1247,7 +1565,7 @@
       <h2 class="doctor__name">井上 勝元</h2>
       <p class="doctor__role">医療法人 井上歯科医院 川越歯科口腔外科クリニック 院長</p>
       <p class="doctor__text">
-        口腔外科の専門知識とマイクロスコープ治療の経験を活かし、「削る・抜く」以外の選択肢を一緒に探します。顕微鏡の映像を見ながら、納得いただいたうえで治療を進める——それが私の診療スタイルです。
+        日本口腔外科学会認定の口腔外科専門医。明海大学歯学部卒業後、顎顔面外科学分野で研鑽を積み、マイクロスコープ治療の指導者としても活動しています。顕微鏡の映像を共有しながら、納得いただいたうえで治療を進めることを大切にしています。
       </p>
       <ul class="doctor__career">
         <li>医療法人鉄蕉会 亀田総合病院 歯科医師臨床研修医</li>
@@ -1260,22 +1578,78 @@
   </div>
 </section>
 
-<!-- その他診療（サブ） -->
+<!-- 医師チーム（公式掲載ベース） -->
+<section class="team reveal" id="team">
+  <div class="team__inner">
+    <div class="team__head">
+      <h2>医師紹介</h2>
+      <p>口腔外科専門医を中心に、複数の歯科医師が診療にあたっています。</p>
+    </div>
+    <div class="team__grid">
+      <article class="team-card">
+        <p class="team-card__role">院長</p>
+        <h3>井上 勝元</h3>
+        <p>口腔外科専門医／明海大学歯学部 卒業</p>
+      </article>
+      <article class="team-card">
+        <p class="team-card__role">副院長</p>
+        <h3>瀧澤 将太</h3>
+        <p>口腔外科専門医／明海大学歯学部 卒業</p>
+      </article>
+      <article class="team-card">
+        <p class="team-card__role">医師</p>
+        <h3>岩間 裕也</h3>
+        <p>明海大学歯学部 卒業</p>
+      </article>
+      <article class="team-card">
+        <p class="team-card__role">医師</p>
+        <h3>田川 裕也</h3>
+        <p>明海大学歯学部 卒業</p>
+      </article>
+      <article class="team-card">
+        <p class="team-card__role">医師</p>
+        <h3>大島 隆史</h3>
+        <p>明海大学歯学部 卒業／矯正担当</p>
+      </article>
+    </div>
+    <p class="team__note">理事長：井上 勝美（明海大学歯学部 卒業）</p>
+  </div>
+</section>
+
+<!-- その他診療科目 -->
 <section class="services-secondary reveal">
   <div class="services-secondary__inner">
     <div class="services-secondary__head">
       <div>
         <h2>その他の診療</h2>
-        <p>マイクロスコープ以外にも、口腔外科・小児・訪問など地域のニーズに応えます。</p>
+        <p>一般歯科・小児歯科・ホワイトニング・マウスピース・矯正などもご相談ください。</p>
       </div>
     </div>
-    <div class="services-tags">
-      <a href="#access">歯科口腔外科</a>
-      <a href="#access">小児歯科</a>
-      <a href="#access">訪問歯科診療</a>
-      <a href="#access">ホワイトニング</a>
-      <a href="#access">マウスピース制作</a>
-      <a href="#access">矯正歯科</a>
+    <div class="services-grid">
+      <article class="service-item">
+        <h3>顕微鏡歯科（マイクロスコープ）</h3>
+        <p>初期の虫歯発見や根管治療など、拡大視野で精密な処置を行います。</p>
+      </article>
+      <article class="service-item">
+        <h3>一般歯科</h3>
+        <p>虫歯・歯周病の治療・予防、入れ歯・義歯など保険診療の治療全般。</p>
+      </article>
+      <article class="service-item">
+        <h3>小児歯科</h3>
+        <p>虫歯の予防・治療、歯磨き指導、定期検査など継続的なケア。</p>
+      </article>
+      <article class="service-item">
+        <h3>ホワイトニング</h3>
+        <p>オフィス・ホームホワイトニング。歯を削らず白くする自費診療（要相談）。</p>
+      </article>
+      <article class="service-item">
+        <h3>マウスピース</h3>
+        <p>顎への負担軽減やスポーツ用など、オーダーメイドのマウスピース制作。</p>
+      </article>
+      <article class="service-item">
+        <h3>矯正歯科</h3>
+        <p>機能面・審美面の改善。専任医師が担当します。</p>
+      </article>
     </div>
   </div>
 </section>
@@ -1292,9 +1666,9 @@
     >
   </div>
   <div class="clinic-strip__text">
-    <h2>大正2年から、川越の地で</h2>
+    <h2>川越・鶴ヶ島・坂戸から</h2>
     <p>
-      100年以上にわたり地域の皆さまのお口の健康を支えてきた井上歯科医院。その伝統のなかで、私たちは「精密」の技術——マイクロスコープ——を次の世代の標準にしようとしています。
+      医療法人 井上歯科医院 川越歯科口腔外科クリニックは、地域の患者さまのお口の健康を支えています。口腔外科・有病者歯科・インプラント・訪問診療を柱に、マイクロスコープによる精密治療を日常の標準として提供しています。
     </p>
   </div>
 </section>
@@ -1314,24 +1688,24 @@
           </thead>
           <tbody>
             <tr>
-              <td>午前<small>9:30–13:00</small></td>
+              <td>午前<small>9:00–12:30</small></td>
               <td class="on">○</td><td class="on">○</td><td class="on">○</td>
-              <td class="off">—</td><td class="on">○</td><td class="on">○</td><td class="off">—</td>
+              <td class="off">休</td><td class="on">○</td><td class="on">○</td><td class="off">休</td>
             </tr>
             <tr>
-              <td>午後<small>14:30–18:00</small></td>
+              <td>午後<small>14:00–18:30</small></td>
               <td class="on">○</td><td class="on">○</td><td class="on">○</td>
-              <td class="off">—</td><td class="on">○</td><td class="on">○</td><td class="off">—</td>
+              <td class="off">休</td><td class="on">○</td><td class="off">—</td><td class="off">休</td>
             </tr>
             <tr>
-              <td>夜間<small>18:00〜</small></td>
-              <td class="on">○</td><td class="on">○</td><td class="on">○</td>
-              <td class="off">—</td><td class="on">○</td><td class="off">—</td><td class="off">—</td>
+              <td>午後<small>14:00–18:00</small></td>
+              <td class="off">—</td><td class="off">—</td><td class="off">—</td>
+              <td class="off">—</td><td class="off">—</td><td class="on">○</td><td class="off">—</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="schedule-note">休診：木・日・祝 ／ 土曜は午前・午後のみ ／ 夜間診療あり</p>
+      <p class="schedule-note">休診：木曜・日曜・祝日 ／ 土曜午後は18:00まで ／ 昼休み 12:30–14:00</p>
     </div>
     <div class="access-info">
       <dl>
@@ -1342,9 +1716,15 @@
         <dt>電話</dt>
         <dd class="tel"><a href="tel:049-232-4182">049-232-4182</a></dd>
         <dt>アクセス</dt>
-        <dd>東武東上線 鶴ヶ島駅東口より車約5分<br>霞ヶ関駅より徒歩圏内／駐車場あり</dd>
+        <dd>東武東上線 <strong>鶴ヶ島駅</strong> 東口より車約5分<br>川越・鶴ヶ島・坂戸エリア／駐車場あり</dd>
+        <dt>公式サイト</dt>
+        <dd><a href="http://www.inouedental.or.jp/" target="_blank" rel="noopener noreferrer">www.inouedental.or.jp</a></dd>
       </dl>
     </div>
+    <aside class="related-clinic">
+      <strong>令和8年4月1日　クレア歯科 開院</strong>
+      姉妹院：埼玉県川越市脇田町8-1（クレアモール内）／ TEL <a href="tel:049-222-0465">049-222-0465</a>
+    </aside>
     <div class="map">
       <iframe
         title="医療法人 井上歯科医院 川越歯科口腔外科クリニックの地図"
@@ -1357,13 +1737,23 @@
     <p class="schedule-note" style="grid-column:1/-1;margin-top:-1.5rem">
       <a href="https://www.google.com/maps/search/?api=1&amp;query=35.9372163,139.4377593" target="_blank" rel="noopener noreferrer">Googleマップで大きな地図を見る</a>
     </p>
+    <div class="policy">
+      <details>
+        <summary>キャンセルポリシー・ご予約について</summary>
+        <div class="policy__body">
+          <p>当院は予約制で診療時間を確保しております。ご予約の変更・キャンセルは<strong>前日の診療終了時間まで</strong>（休診日の場合はその前日まで）にお電話にてご連絡ください。</p>
+          <p>ご予約当日のキャンセル・無断キャンセルの場合、キャンセル料として<strong>3,300円（税込）</strong>を頂戴いたします。15分以上の遅刻の場合は、ご予約の取り直しをお願いする場合がございます。</p>
+          <p>※祝日の休診有無はお電話にてご確認ください。表示の診療状況バナーはデモ用の自動表示です。</p>
+        </div>
+      </details>
+    </div>
   </div>
 </section>
 
 <section class="cta">
   <div class="cta__inner reveal">
-    <h2>マイクロスコープ治療のご相談は、お気軽に</h2>
-    <p>24時間ネット予約受付 ／ お電話 049-232-4182</p>
+    <h2>お電話でのご予約・ご相談</h2>
+    <p>お急ぎの場合もお気軽にどうぞ ／ 049-232-4182</p>
     <div class="cta__btns">
       <a href="#access" class="btn btn--fill">ネット予約</a>
       <a href="tel:049-232-4182" class="btn btn--line">電話する</a>
@@ -1373,8 +1763,11 @@
 
 <footer>
   <div class="wrap">
-    <span>© 医療法人 井上歯科医院</span>
-    <span>Web Design Demo — <a href="#">Georji&Co</a></span>
+    <span>© 医療法人 井上歯科医院 川越歯科口腔外科クリニック</span>
+    <div class="footer-links">
+      <a href="http://www.inouedental.or.jp/" target="_blank" rel="noopener noreferrer">公式サイト</a>
+      <span>Web Design Demo — <a href="#">Georji&amp;Co</a></span>
+    </div>
   </div>
 </footer>
 
@@ -1418,15 +1811,16 @@
     return { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[wd];
   }
 
-  /** @returns {{ slots: {start:number,end:number,label:string}[] } | null} */
+  /** 公式サイトの診療時間に準拠 @returns {{ slots: {start:number,end:number,label:string}[] } | null} */
   function scheduleForDay(day) {
     if (day === 0 || day === 4) return null;
     const slots = [
-      { start: 9 * 60 + 30, end: 13 * 60, label: '午前診療' },
-      { start: 14 * 60 + 30, end: 18 * 60, label: '午後診療' },
+      { start: 9 * 60, end: 12 * 60 + 30, label: '午前診療' },
     ];
-    if (day !== 6) {
-      slots.push({ start: 18 * 60, end: 21 * 60, label: '夜間診療' });
+    if (day === 6) {
+      slots.push({ start: 14 * 60, end: 18 * 60, label: '午後診療' });
+    } else {
+      slots.push({ start: 14 * 60, end: 18 * 60 + 30, label: '午後診療' });
     }
     return { slots };
   }
@@ -1461,11 +1855,11 @@
       }
     }
 
-    if (min >= 13 * 60 && min < 14 * 60 + 30) {
+    if (min >= 12 * 60 + 30 && min < 14 * 60) {
       return {
         kind: 'break',
         label: '昼休み',
-        detail: '14:30より午後の診療を開始します',
+        detail: '14:00より午後の診療を開始します',
       };
     }
 
