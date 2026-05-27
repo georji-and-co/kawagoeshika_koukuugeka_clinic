@@ -932,6 +932,48 @@
   }
   .service-item p { font-size: 12px; color: var(--text-soft); line-height: 1.85; }
 
+  /* ── Accordion (診療科目) ── */
+  .services-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .services-accordion details {
+    background: var(--surface);
+  }
+  .services-accordion summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--mincho);
+    font-size: 1.05rem;
+    font-weight: 500;
+  }
+  .services-accordion summary::-webkit-details-marker { display: none; }
+  .services-accordion__badge {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: #ff4d4d;
+    color: #fff;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    transform: translateY(-1px);
+  }
+  .services-accordion__body {
+    padding: 0 1.5rem 1.35rem;
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.85;
+    border-top: 1px solid var(--line);
+  }
+
   .branch-banner {
     padding: clamp(3rem, 6vw, 4rem) 0;
     background: linear-gradient(135deg, #0b0f12 0%, #12252b 48%, #0f1a1f 100%);
@@ -1680,35 +1722,71 @@
   <div class="services-secondary__inner">
     <div class="services-secondary__head">
       <div>
-        <h2>その他の診療</h2>
-        <p>一般歯科・小児歯科・ホワイトニング・マウスピース・矯正などもご相談ください。</p>
+        <h2>診療科目</h2>
+        <p>顕微鏡治療から、口腔外科・インプラント・訪問診療まで幅広く対応しています。</p>
       </div>
     </div>
-    <div class="services-grid">
-      <article class="service-item">
-        <h3>顕微鏡歯科（マイクロスコープ）</h3>
-        <p>初期の虫歯発見や根管治療など、拡大視野で精密な処置を行います。</p>
-      </article>
-      <article class="service-item">
-        <h3>一般歯科</h3>
-        <p>虫歯・歯周病の治療・予防、入れ歯・義歯など保険診療の治療全般。</p>
-      </article>
-      <article class="service-item">
-        <h3>小児歯科</h3>
-        <p>虫歯の予防・治療、歯磨き指導、定期検査など継続的なケア。</p>
-      </article>
-      <article class="service-item">
-        <h3>ホワイトニング</h3>
-        <p>オフィス・ホームホワイトニング。歯を削らず白くする自費診療（要相談）。</p>
-      </article>
-      <article class="service-item">
-        <h3>マウスピース</h3>
-        <p>顎への負担軽減やスポーツ用など、オーダーメイドのマウスピース制作。</p>
-      </article>
-      <article class="service-item">
-        <h3>矯正歯科</h3>
-        <p>機能面・審美面の改善。専任医師が担当します。</p>
-      </article>
+    <div class="services-accordion" aria-label="診療科目">
+      <details open>
+        <summary>顕微鏡歯科（マイクロスコープ）</summary>
+        <div class="services-accordion__body">
+          顕微鏡（マイクロスコープ）を使った治療の大きな特徴は、肉眼では見えないぐらい小さな虫歯を発見すれば初期段階での治療が出来ますし、噛み残しや根管部分（歯の根の部分、神経が入っている管）も、顕微鏡治療では明るく拡大出来ます。
+        </div>
+      </details>
+      <details open>
+        <summary>口腔外科</summary>
+        <div class="services-accordion__body">
+          口腔(こうくう:口のなか)、顎(がく:あご)、顔面ならびにその隣接組織に現れる疾患を扱う診療科です。口の中の出来物や粘膜の病気、埋まっている親知らずの抜歯を行います。口や顎の腫れや不安な出来物がある方はご相談ください。
+        </div>
+      </details>
+      <details open>
+        <summary>インプラント</summary>
+        <div class="services-accordion__body">
+          歯が無い場所にインプラント体（チタン製のネジのようなもの）を歯の根の代わりに入れる治療です。顎の骨にインプラント体を埋め込み、それを人工の歯の根としてその上に補てつ物（人工の歯）をはめ込む治療です。
+        </div>
+      </details>
+      <details open>
+        <summary>有病者歯科</summary>
+        <div class="services-accordion__body">
+          さまざまな合併症（お口の病気以外の全身の病気）をお持ちの方のための診療科です。全身疾患があり、歯科治療に対して不安のある方はご相談ください。
+        </div>
+      </details>
+      <details open>
+        <summary>小児歯科</summary>
+        <div class="services-accordion__body">
+          成長発育期にある子供の虫歯の予防や治療を行う診療科です。単に虫歯の治療を行うだけでなく、歯磨きの指導や定期検査なども継続的に行います。お子さまの口の健康をトータルでケアします。
+        </div>
+      </details>
+      <details open>
+        <summary>一般歯科</summary>
+        <div class="services-accordion__body">
+          保険診療の対象となる治療として、抜歯、入れ歯、義歯など歯に関する治療、虫歯等の治療・予防、歯周病の予防と治療があります。
+        </div>
+      </details>
+      <details open>
+        <summary>訪問診療</summary>
+        <div class="services-accordion__body">
+          通院が困難な方を対象に、ご自宅や老人ホーム等へ訪問し、歯科治療を行う医療サービスです。
+        </div>
+      </details>
+      <details open>
+        <summary>マウスピース</summary>
+        <div class="services-accordion__body">
+          顎や歯の負担を減らすためや、アスリートの口腔内の安全や競技能力向上のためにオーダーメイドのマウスピースを作成いたします。
+        </div>
+      </details>
+      <details open>
+        <summary>ホワイトニング</summary>
+        <div class="services-accordion__body">
+          薬剤を使用して、歯を傷めず、削らずに歯そのものを白くします。歯科医院で行う「オフィスホワイトニング」と自宅で行う「ホームホワイトニング」の2種類です（自費）。詳しくはスタッフまでお尋ねください。
+        </div>
+      </details>
+      <details open>
+        <summary><span class="services-accordion__badge">NEW</span>矯正歯科</summary>
+        <div class="services-accordion__body">
+          機能的な側面だけでなく、審美的側面でもメリットを生み出す矯正歯科です。女性や子供はもちろんですが、男性にもおすすめです。
+        </div>
+      </details>
     </div>
   </div>
 </section>
