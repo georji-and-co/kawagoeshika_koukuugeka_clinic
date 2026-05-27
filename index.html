@@ -941,16 +941,95 @@
   }
   .service-item p { font-size: 12px; color: var(--text-soft); line-height: 1.85; }
 
-  .related-clinic {
-    grid-column: 1 / -1;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    padding: 1.25rem 1.5rem;
-    font-size: 13px;
-    line-height: 1.85;
+  .branch-banner {
+    padding: clamp(3rem, 6vw, 4rem) 0;
+    background: linear-gradient(135deg, #0b0f12 0%, #12252b 48%, #0f1a1f 100%);
+    color: #e8eaec;
+    border-top: 1px solid rgba(58, 154, 173, 0.25);
+    border-bottom: 1px solid rgba(58, 154, 173, 0.15);
   }
-  .related-clinic strong { display: block; font-family: var(--mincho); font-weight: 500; margin-bottom: 0.35rem; }
-  .related-clinic a { color: var(--accent); }
+  .branch-banner__inner {
+    width: var(--wrap);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+  }
+  .branch-banner__eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: #7dd3e8;
+    margin-bottom: 0.75rem;
+  }
+  .branch-banner h2 {
+    font-family: var(--mincho);
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    font-weight: 500;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  .branch-banner__text {
+    font-size: 14px;
+    line-height: 2;
+    opacity: 0.82;
+    max-width: 42em;
+    margin-bottom: 1.5rem;
+  }
+  .branch-banner__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.95rem 1.6rem;
+    background: var(--accent-light);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 32px rgba(29, 107, 122, 0.35);
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  }
+  .branch-banner__btn:hover {
+    background: #4eb8c9;
+    transform: translateY(-1px);
+    box-shadow: 0 16px 40px rgba(58, 154, 173, 0.45);
+  }
+  .branch-banner__btn span {
+    font-size: 1.1em;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  .branch-banner__btn:hover span { transform: translateX(3px); }
+  .branch-banner__mark {
+    width: clamp(72px, 12vw, 96px);
+    height: clamp(72px, 12vw, 96px);
+    border-radius: 50%;
+    border: 1px solid rgba(125, 211, 232, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mincho);
+    font-size: clamp(1.5rem, 3vw, 1.85rem);
+    font-weight: 500;
+    color: #a8e6f0;
+    background: rgba(29, 107, 122, 0.2);
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px) {
+    .branch-banner__inner {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    .branch-banner__mark {
+      width: 56px;
+      height: 56px;
+      font-size: 1.25rem;
+    }
+  }
 
   .policy {
     grid-column: 1 / -1;
@@ -1721,10 +1800,6 @@
         <dd><a href="http://www.inouedental.or.jp/" target="_blank" rel="noopener noreferrer">www.inouedental.or.jp</a></dd>
       </dl>
     </div>
-    <aside class="related-clinic">
-      <strong>令和8年4月1日　クレア歯科 開院</strong>
-      姉妹院：埼玉県川越市脇田町8-1（クレアモール内）／ TEL <a href="tel:049-222-0465">049-222-0465</a>
-    </aside>
     <div class="map">
       <iframe
         title="医療法人 井上歯科医院 川越歯科口腔外科クリニックの地図"
@@ -1747,6 +1822,29 @@
         </div>
       </details>
     </div>
+  </div>
+</section>
+
+<!-- 分院：クレア歯科 -->
+<section class="branch-banner reveal" id="crea-clinic" aria-labelledby="branch-banner-title">
+  <div class="branch-banner__inner">
+    <div class="branch-banner__content">
+      <p class="branch-banner__eyebrow">医療法人 井上歯科医院　分院</p>
+      <h2 id="branch-banner-title">本川越駅すぐ・クレアモール内の分院はこちら</h2>
+      <p class="branch-banner__text">
+        2026年4月1日、本川越駅徒歩圏内のクレアモール内に、地域密着の総合歯科「クレア歯科」を開院いたしました。一般歯科、小児歯科など身近な歯のお悩みはこちらへご相談ください。
+      </p>
+      <a
+        href="https://georji-and-co.github.io/crea_clinic/"
+        class="branch-banner__btn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        クレア歯科（分院）のサイトを見る
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <div class="branch-banner__mark" aria-hidden="true">ク</div>
   </div>
 </section>
 
