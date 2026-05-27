@@ -235,9 +235,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 35%;
     transform: scale(1.05);
     transition: transform 8s var(--ease);
+    filter: brightness(1.02) saturate(0.9);
   }
   .hero.is-loaded .hero__media img { transform: scale(1); }
   .hero__media::after {
@@ -245,8 +246,8 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(0deg, rgba(11,15,18,0.92) 0%, rgba(11,15,18,0.35) 45%, rgba(11,15,18,0.5) 100%),
-      linear-gradient(90deg, rgba(11,15,18,0.7) 0%, transparent 55%);
+      linear-gradient(0deg, rgba(11,15,18,0.78) 0%, rgba(11,15,18,0.15) 50%, rgba(11,15,18,0.22) 100%),
+      linear-gradient(90deg, rgba(11,15,18,0.45) 0%, transparent 58%);
   }
   .hero__content {
     position: relative;
@@ -276,12 +277,23 @@
   }
   .hero__title {
     font-family: var(--mincho);
-    font-size: clamp(2.25rem, 6.5vw, 4.25rem);
+    font-size: clamp(1.65rem, 4.8vw, 3.35rem);
     font-weight: 500;
-    line-height: 1.25;
+    line-height: 1.4;
     letter-spacing: 0.02em;
-    max-width: 14ch;
+    max-width: min(100%, 22em);
     margin-bottom: 1.25rem;
+    text-wrap: balance;
+  }
+  .hero__title-em {
+    color: #c5eef5;
+    font-weight: 500;
+  }
+  .hero__title .br-mobile { display: block; }
+  .hero__title .br-desktop { display: none; }
+  @media (min-width: 768px) {
+    .hero__title .br-mobile { display: none; }
+    .hero__title .br-desktop { display: block; }
   }
   .hero__lead {
     font-size: clamp(14px, 2vw, 16px);
@@ -322,27 +334,6 @@
     color: #fff;
   }
   .btn--line:hover { background: rgba(255,255,255,0.08); }
-  .hero__stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem 3rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid rgba(255,255,255,0.15);
-  }
-  .hero__stat strong {
-    display: block;
-    font-family: var(--mincho);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 500;
-    line-height: 1.1;
-    color: #fff;
-  }
-  .hero__stat span {
-    font-size: 12px;
-    opacity: 0.65;
-    display: block;
-    margin-top: 0.25rem;
-  }
   .hero__scroll {
     position: absolute;
     right: max(1.25rem, calc((100vw - 1280px) / 2 + 1.25rem));
@@ -1319,36 +1310,25 @@
 <section class="hero" id="top">
   <div class="hero__media">
     <img
-      src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=2000&q=80"
-      alt="プロフェッショナルで清潔感のある、モダンな歯科診療室・医療機器の風景"
-      width="2000"
-      height="1333"
+      src="images/hero-dental-unit.png"
+      alt="明るく清潔な歯科診療室のユニットと最新の治療機器"
+      width="1920"
+      height="1280"
       fetchpriority="high"
     >
   </div>
   <div class="hero__content">
     <p class="hero__badge">口腔外科・有病者歯科・インプラント・訪問診療</p>
-    <h1 class="hero__title">見えるから、<br>納得できる治療。</h1>
+    <h1 class="hero__title">
+      「見えないから任せる」<br class="br-mobile">のではなく、<br class="br-desktop">
+      <span class="hero__title-em">"見えるから納得できる治療"</span>を。
+    </h1>
     <p class="hero__lead">
       歯科治療の良し悪しは、患者さまご自身では分かりにくいものです。当院では<strong>ほぼすべての治療をマイクロスコープ（手術用顕微鏡）で実施</strong>し、ミクロン単位の処置を大型モニターにリアルタイムで映し出します。「見えないから任せる」のではなく、<strong>ご自身の目で確かめる</strong>医療を目指しています。
     </p>
     <div class="hero__actions">
       <a href="#microscope" class="btn btn--fill">マイクロスコープ治療とは</a>
       <a href="#access" class="btn btn--line">診療時間・ご予約</a>
-    </div>
-    <div class="hero__stats">
-      <div class="hero__stat">
-        <strong>ほぼすべて</strong>
-        <span>の治療をマイクロスコープで</span>
-      </div>
-      <div class="hero__stat">
-        <strong>モニター</strong>
-        <span>にリアルタイム映像</span>
-      </div>
-      <div class="hero__stat">
-        <strong>川越</strong>
-        <span>鶴ヶ島・坂戸エリア</span>
-      </div>
     </div>
   </div>
   <span class="hero__scroll" aria-hidden="true">SCROLL</span>
@@ -1393,8 +1373,8 @@
     </div>
     <div class="visible-treat__visual">
       <img
-        src="https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&fit=crop&w=1200&q=80"
-        alt="モニターに映像を映しながら歯科治療の説明をする様子"
+        src="images/visible-treat-monitor.png"
+        alt="モニターに映したレントゲン画像を見ながら、歯科医師が患者さまに丁寧に説明している様子"
         width="1200"
         height="800"
         loading="lazy"
@@ -1426,8 +1406,8 @@
     </div>
     <div class="compare__col compare__col--micro">
       <img
-        src="https://images.unsplash.com/photo-1770321119305-f191c09c5801?auto=format&fit=crop&w=1200&q=80"
-        alt="モニターと精密器具を備えた、清潔な歯科用マイクロスコープ治療の設備"
+        src="images/compare-microscope.png"
+        alt="歯科用マイクロスコープの対物レンズと診察ステージのクローズアップ"
         width="1200"
         height="800"
         loading="lazy"
@@ -1527,8 +1507,8 @@
     <article class="story-card">
       <div class="story-card__img">
         <img
-          src="https://images.unsplash.com/photo-1770321119305-f191c09c5801?auto=format&fit=crop&w=800&q=80"
-          alt="モニターと精密器具を備えた先進的な歯科医療設備"
+          src="images/compare-microscope.png"
+          alt="歯科用マイクロスコープによる精密な再治療・難症例への対応"
           width="800"
           height="600"
           loading="lazy"
@@ -1602,13 +1582,13 @@
       </div>
       <div class="gallery__item">
         <img
-          src="https://images.unsplash.com/photo-1770321119305-f191c09c5801?auto=format&fit=crop&w=600&q=80"
-          alt="マイクロスコープとモニターを備えた精密治療用設備"
+          src="images/compare-microscope.png"
+          alt="歯科用マイクロスコープの精密治療設備"
           width="600"
           height="450"
           loading="lazy"
         >
-        <span class="gallery__cap">マイクロスコープ・大型モニター</span>
+        <span class="gallery__cap">マイクロスコープによる精密治療</span>
       </div>
       <div class="gallery__item">
         <img
