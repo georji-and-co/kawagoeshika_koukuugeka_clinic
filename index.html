@@ -298,6 +298,26 @@
   }
   .hero__title .br-mobile { display: block; }
   .hero__title .br-desktop { display: none; }
+  @media (max-width: 767px) {
+    .hero__media::after {
+      background:
+        linear-gradient(0deg, rgba(11, 15, 18, 0.9) 0%, rgba(11, 15, 18, 0.72) 42%, rgba(11, 15, 18, 0.4) 100%),
+        linear-gradient(90deg, rgba(11, 15, 18, 0.72) 0%, rgba(11, 15, 18, 0.35) 75%);
+    }
+    .hero__title {
+      text-shadow: 0 1px 10px rgba(11, 15, 18, 0.55);
+    }
+    .hero__title-em {
+      color: #fff;
+      font-weight: 600;
+      background: rgba(11, 15, 18, 0.78);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      padding: 0.1em 0.4em;
+      border-left: 3px solid var(--accent-light);
+      line-height: 1.65;
+    }
+  }
   @media (min-width: 768px) {
     .hero__title .br-mobile { display: none; }
     .hero__title .br-desktop { display: block; }
@@ -1352,7 +1372,7 @@
     <p class="hero__badge">口腔外科・有病者歯科・インプラント・訪問診療</p>
     <h1 class="hero__title">
       「見えないから任せる」<br class="br-mobile">のではなく、<br class="br-desktop">
-      <span class="hero__title-em">"見えるから納得できる治療"</span>を。
+      <span class="hero__title-em">"見えるから納得できる治療"を。</span>
     </h1>
     <p class="hero__lead">
       歯科治療の良し悪しは、患者さまご自身では分かりにくいものです。当院では<strong>ほぼすべての治療をマイクロスコープ（手術用顕微鏡）で実施</strong>し、ミクロン単位の処置を大型モニターにリアルタイムで映し出します。「見えないから任せる」のではなく、<strong>ご自身の目で確かめる</strong>医療を目指しています。
