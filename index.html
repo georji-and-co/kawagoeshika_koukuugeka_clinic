@@ -157,21 +157,28 @@
     justify-content: space-between;
   }
   .nav__logo {
-    font-family: var(--mincho);
-    font-size: 15px;
-    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
     text-decoration: none;
-    letter-spacing: 0.04em;
-    line-height: 1.35;
+    line-height: 1.3;
+    max-width: min(100%, 14em);
   }
-  .nav__logo small {
-    display: block;
+  .nav__logo-sub {
     font-family: var(--sans);
     font-size: 9px;
     font-weight: 400;
-    opacity: 0.55;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
+    opacity: 0.62;
   }
+  .nav__logo-main {
+    font-family: var(--mincho);
+    font-size: clamp(13px, 2.6vw, 16px);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .nav.is-dark .nav__logo-sub { opacity: 0.72; }
+  .nav.is-dark .nav__logo-main { color: #fff; }
   .nav__links {
     display: flex;
     align-items: center;
@@ -1314,8 +1321,8 @@
 <header class="nav nav--hero" id="nav">
   <div class="nav__inner">
     <a href="#" class="nav__logo">
-      井上歯科医院
-      <small>川越歯科口腔外科クリニック</small>
+      <span class="nav__logo-sub">医療法人 井上歯科医院</span>
+      <span class="nav__logo-main">川越歯科口腔外科クリニック</span>
     </a>
     <button class="nav__burger" type="button" aria-label="メニュー" aria-expanded="false">
       <span></span><span></span><span></span>
