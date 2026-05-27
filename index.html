@@ -746,24 +746,7 @@
     margin-bottom: 0.5rem;
   }
   .pillars__head p { font-size: 14px; color: var(--text-soft); line-height: 1.9; }
-  .pillars__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-  .pillar-card {
-    background: var(--surface);
-    padding: 1.35rem 1.25rem;
-    border: 1px solid var(--line);
-  }
-  .pillar-card h3 {
-    font-family: var(--mincho);
-    font-size: 1.05rem;
-    font-weight: 500;
-    margin-bottom: 0.65rem;
-    color: var(--accent);
-  }
-  .pillar-card p { font-size: 12px; color: var(--text-soft); line-height: 1.85; }
+  .pillars .services-accordion { margin-top: 0.5rem; }
 
   .visible-treat {
     padding: clamp(4rem, 8vw, 5.5rem) 0;
@@ -1278,8 +1261,7 @@
     .clinic-strip,
     .compare__grid,
     .visible-treat__inner,
-    .trust__inner,
-    .pillars__grid { grid-template-columns: 1fr; }
+    .trust__inner { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
     .doctor__inner { justify-items: center; text-align: center; }
     .doctor__career { text-align: left; }
@@ -1470,35 +1452,29 @@
       <h2>診療科目</h2>
       <p>川越・鶴ヶ島・坂戸エリアの患者さまに、口腔外科を中心とした専門的な歯科医療を提供しています。</p>
     </div>
-    <div class="pillars__grid">
-      <article class="pillar-card">
-        <h3>口腔外科</h3>
-        <p>口腔(こうくう:口のなか)、顎(がく:あご)、顔面ならびにその隣接組織に現れる疾患を扱う診療科です。口の中の出来物や粘膜の病気、埋まっている親知らずの抜歯を行います。口や顎の腫れや不安な出来物がある方はご相談ください。</p>
-      </article>
-      <article class="pillar-card">
-        <h3>有病者歯科</h3>
-        <p>さまざまな合併症（お口の病気以外の全身の病気）をお持ちの方のための診療科です。全身疾患があり、歯科治療に対して不安のある方はご相談ください。</p>
-      </article>
-      <article class="pillar-card">
-        <h3>インプラント</h3>
-        <p>歯が無い場所にインプラント体（チタン製のネジのようなもの）を歯の根の代わりに入れる治療です。顎の骨にインプラント体を埋め込み、それを人工の歯の根としてその上に補てつ物（人工の歯）をはめ込む治療です。</p>
-      </article>
-      <article class="pillar-card">
-        <h3>訪問診療</h3>
-        <p>通院が困難な方を対象に、ご自宅や老人ホーム等へ訪問し、歯科治療を行う医療サービスです。</p>
-      </article>
-    </div>
-    <div class="services-secondary__head" style="margin-top:2.25rem">
-      <div>
-        <h2 style="font-size:1.35rem">その他の診療科目</h2>
-        <p>必要に応じて開閉してご覧ください。</p>
-      </div>
-    </div>
-    <div class="services-accordion" aria-label="診療科目（詳細）">
+    <div class="services-accordion" aria-label="診療科目一覧">
       <details>
         <summary>顕微鏡歯科　マイクロスコープ</summary>
         <div class="services-accordion__body">
           顕微鏡（マイクロスコープ）を使った治療の大きな特徴は、肉眼では見えないぐらい小さなむし歯を発見すれば初期段階での治療が出来ますし、暗く狭い根管部分（歯の根の部分、神経が入っている管）も、顕微鏡治療では明るく拡大出来ます。
+        </div>
+      </details>
+      <details>
+        <summary>口腔外科</summary>
+        <div class="services-accordion__body">
+          口腔(こうくう:口のなか)、顎(がく:あご)、顔面ならびにその隣接組織に現れる疾患を扱う診療科です。口の中の出来物や粘膜の病気、埋まっている親知らずの抜歯を行います。口や顎の腫れや不安な出来物がある方はご相談ください。
+        </div>
+      </details>
+      <details>
+        <summary>インプラント</summary>
+        <div class="services-accordion__body">
+          歯が無い場所にインプラント体（チタン製のネジのようなもの）を歯の根の代わりに入れる治療です。顎の骨にインプラント体を埋め込み、それを人工の歯の根としてその上に補てつ物（人工の歯）をはめ込む治療です。
+        </div>
+      </details>
+      <details>
+        <summary>有病者歯科</summary>
+        <div class="services-accordion__body">
+          さまざまな合併症（お口の病気以外の全身の病気）をお持ちの方のための診療科です。全身疾患があり、歯科治療に対して不安のある方はご相談ください。
         </div>
       </details>
       <details>
@@ -1511,6 +1487,12 @@
         <summary>一般歯科</summary>
         <div class="services-accordion__body">
           保険診療の対象となる治療として、抜歯、入れ歯、義歯など歯に関する治療、虫歯等の治療・予防、歯周病の予防と治療があります。
+        </div>
+      </details>
+      <details>
+        <summary>訪問診療</summary>
+        <div class="services-accordion__body">
+          通院が困難な方を対象に、ご自宅や老人ホーム等へ訪問し、歯科治療を行う医療サービスです。
         </div>
       </details>
       <details>
