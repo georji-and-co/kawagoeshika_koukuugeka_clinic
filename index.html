@@ -292,10 +292,12 @@
     margin-bottom: 1.25rem;
     text-wrap: balance;
   }
-  .hero__title-em {
+  .hero__title-b-break { display: none; }
+  .hero__title-highlight {
     color: #c5eef5;
     font-weight: 500;
   }
+  .hero__title-end { white-space: nowrap; }
   .hero__title .br-mobile { display: block; }
   .hero__title .br-desktop { display: none; }
   @media (max-width: 767px) {
@@ -308,24 +310,29 @@
         linear-gradient(90deg, rgba(11, 15, 18, 0.55) 0%, transparent 62%);
     }
     .hero__title {
+      text-wrap: pretty;
+      max-width: 100%;
+    }
+    .hero__title-line1 {
       color: #fff;
       text-shadow:
         0 0 1px rgba(11, 15, 18, 0.95),
         0 1px 3px rgba(11, 15, 18, 0.8),
         0 2px 14px rgba(11, 15, 18, 0.55);
     }
-    .hero__title-em {
-      color: #f4feff;
-      font-weight: 600;
+    .hero__title-highlight {
+      color: #d8f7fc;
       text-shadow:
         0 0 1px rgba(11, 15, 18, 1),
         0 0 2px rgba(11, 15, 18, 0.95),
         0 1px 4px rgba(11, 15, 18, 0.88),
-        0 2px 18px rgba(11, 15, 18, 0.65),
-        0 0 28px rgba(58, 154, 173, 0.4);
+        0 2px 16px rgba(11, 15, 18, 0.65),
+        0 0 24px rgba(58, 154, 173, 0.45);
     }
   }
   @media (min-width: 768px) {
+    .hero__title-b-inline { display: none; }
+    .hero__title-b-break { display: inline; }
     .hero__title .br-mobile { display: none; }
     .hero__title .br-desktop { display: block; }
   }
@@ -1378,8 +1385,9 @@
   <div class="hero__content">
     <p class="hero__badge">口腔外科・有病者歯科・インプラント・訪問診療</p>
     <h1 class="hero__title">
-      「見えないから任せる」<br class="br-mobile">のではなく、<br class="br-desktop">
-      <span class="hero__title-em">"見えるから納得できる治療"を。</span>
+      <span class="hero__title-line1">「見えないから任せる」<span class="hero__title-b-inline">のではなく</span></span><br class="br-mobile">
+      <span class="hero__title-b-break">のではなく、</span><br class="br-desktop">
+      <span class="hero__title-highlight">"見えるから納得できる"<span class="hero__title-end">治療を。</span></span>
     </h1>
     <p class="hero__lead">
       歯科治療の良し悪しは、患者さまご自身では分かりにくいものです。当院では<strong>ほぼすべての治療をマイクロスコープ（手術用顕微鏡）で実施</strong>し、ミクロン単位の処置を大型モニターにリアルタイムで映し出します。「見えないから任せる」のではなく、<strong>ご自身の目で確かめる</strong>医療を目指しています。
