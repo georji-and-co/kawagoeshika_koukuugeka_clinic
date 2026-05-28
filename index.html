@@ -289,17 +289,14 @@
     line-height: 1.4;
     letter-spacing: 0.02em;
     max-width: min(100%, 22em);
-    margin-bottom: 1.25rem;
-    text-wrap: balance;
+    margin-bottom: 1.5rem;
   }
-  .hero__title-b-break { display: none; }
+  .hero__title-l1,
+  .hero__title-l2 { display: block; }
   .hero__title-highlight {
     color: #c5eef5;
     font-weight: 500;
   }
-  .hero__title-end { white-space: nowrap; }
-  .hero__title .br-mobile { display: block; }
-  .hero__title .br-desktop { display: none; }
   @media (max-width: 767px) {
     .hero__media img {
       filter: brightness(0.88) saturate(0.88);
@@ -310,10 +307,11 @@
         linear-gradient(90deg, rgba(11, 15, 18, 0.55) 0%, transparent 62%);
     }
     .hero__title {
-      text-wrap: pretty;
+      font-size: clamp(1.4rem, 5.8vw, 1.75rem);
+      line-height: 1.45;
       max-width: 100%;
     }
-    .hero__title-line1 {
+    .hero__title-l1 {
       color: #fff;
       text-shadow:
         0 0 1px rgba(11, 15, 18, 0.95),
@@ -329,23 +327,6 @@
         0 2px 16px rgba(11, 15, 18, 0.65),
         0 0 24px rgba(58, 154, 173, 0.45);
     }
-  }
-  @media (min-width: 768px) {
-    .hero__title-b-inline { display: none; }
-    .hero__title-b-break { display: inline; }
-    .hero__title .br-mobile { display: none; }
-    .hero__title .br-desktop { display: block; }
-  }
-  .hero__lead {
-    font-size: clamp(14px, 2vw, 16px);
-    max-width: 36em;
-    opacity: 0.88;
-    margin-bottom: 2rem;
-    font-weight: 400;
-  }
-  .hero__lead strong {
-    color: #a8e6f0;
-    font-weight: 500;
   }
   .hero__actions {
     display: flex;
@@ -1316,16 +1297,35 @@
     .nav__links {
       position: fixed;
       inset: var(--header) 0 0 0;
-      background: var(--bg);
+      z-index: 260;
+      background: #f6f3ee;
       flex-direction: column;
       justify-content: center;
       gap: 1.5rem;
       transform: translateX(100%);
       transition: transform 0.35s var(--ease);
+      box-shadow: -8px 0 32px rgba(11, 15, 18, 0.12);
     }
     .nav.is-open .nav__links { transform: translateX(0); }
-    .nav__burger { display: block; }
-    .nav__links a { font-size: 1.1rem; }
+    .nav.is-open {
+      background: rgba(246, 243, 238, 0.98);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .nav.is-open.is-dark .nav__logo-sub,
+    .nav.is-open.is-dark .nav__logo-main { color: var(--text); }
+    .nav.is-open.is-dark .nav__logo-sub { opacity: 0.62; }
+    .nav.is-open .nav__links a {
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+    .nav.is-open .nav__links a:hover { color: var(--accent); }
+    .nav.is-open .nav__cta {
+      background: var(--accent);
+      color: #fff;
+    }
+    .nav.is-open .nav__burger { color: var(--text); }
+    .nav__burger { display: block; z-index: 270; }
     .mobile-bar { display: grid; }
     body { padding-bottom: 64px; }
     .demo-pill { bottom: calc(72px + env(safe-area-inset-bottom)); font-size: 10px; }
@@ -1385,13 +1385,9 @@
   <div class="hero__content">
     <p class="hero__badge">口腔外科・有病者歯科・インプラント・訪問診療</p>
     <h1 class="hero__title">
-      <span class="hero__title-line1">「見えないから任せる」<span class="hero__title-b-inline">のではなく</span></span><br class="br-mobile">
-      <span class="hero__title-b-break">のではなく、</span><br class="br-desktop">
-      <span class="hero__title-highlight">"見えるから納得できる"<span class="hero__title-end">治療を。</span></span>
+      <span class="hero__title-l1">「見えないから任せる」のではなく、</span>
+      <span class="hero__title-l2 hero__title-highlight">"見えるから納得できる"治療を。</span>
     </h1>
-    <p class="hero__lead">
-      歯科治療の良し悪しは、患者さまご自身では分かりにくいものです。当院では<strong>ほぼすべての治療をマイクロスコープ（手術用顕微鏡）で実施</strong>し、ミクロン単位の処置を大型モニターにリアルタイムで映し出します。「見えないから任せる」のではなく、<strong>ご自身の目で確かめる</strong>医療を目指しています。
-    </p>
     <div class="hero__actions">
       <a href="#microscope" class="btn btn--fill">マイクロスコープ治療とは</a>
       <a href="#access" class="btn btn--line">診療時間・ご予約</a>
@@ -1939,8 +1935,6 @@
   const statusLabel = document.getElementById('statusLabel');
   const statusDetail = document.getElementById('statusDetail');
 
-  const DAY_NAMES = ['日', '月', '火', '水', '木', '金', '土'];
-
   function jstMinutes(date) {
     const parts = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Asia/Tokyo',
@@ -1987,11 +1981,14 @@
     const schedule = scheduleForDay(day);
 
     if (!schedule) {
-      const reasons = { 0: '日曜・祝日', 4: '木曜' };
+      const closedDetail = {
+        0: '本日は日曜・祝日のため休診です',
+        4: '本日は木曜のため休診です',
+      };
       return {
         kind: 'closed',
         label: '休診中',
-        detail: `本日は${reasons[day] || '休診日'}です`,
+        detail: closedDetail[day] || '本日は休診日です',
       };
     }
 
@@ -2036,8 +2033,7 @@
       s.kind === 'open' ? 'is-open' : s.kind === 'break' ? 'is-break' : 'is-closed'
     );
     statusLabel.textContent = s.label;
-    const dayName = DAY_NAMES[jstWeekday(new Date())];
-    statusDetail.textContent = `${dayName}曜 ${s.detail}`;
+    statusDetail.textContent = s.detail;
   }
 
   renderClinicStatus();
