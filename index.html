@@ -120,11 +120,6 @@
     white-space: nowrap;
   }
   .status-bar__tel:hover { color: #fff; }
-  @media (max-width: 640px) {
-    .status-bar__tel { display: none; }
-    .status-bar__detail { font-size: 10px; }
-    .status-bar__label { font-size: 11px; }
-  }
 
   /* ── Nav ── */
   .nav {
@@ -291,42 +286,12 @@
     max-width: min(100%, 22em);
     margin-bottom: 1.5rem;
   }
+  .hero__main { display: contents; }
   .hero__title-l1,
   .hero__title-l2 { display: block; }
   .hero__title-highlight {
     color: #c5eef5;
     font-weight: 500;
-  }
-  @media (max-width: 767px) {
-    .hero__media img {
-      filter: brightness(0.88) saturate(0.88);
-    }
-    .hero__media::after {
-      background:
-        linear-gradient(0deg, rgba(11, 15, 18, 0.82) 0%, rgba(11, 15, 18, 0.32) 48%, rgba(11, 15, 18, 0.28) 100%),
-        linear-gradient(90deg, rgba(11, 15, 18, 0.55) 0%, transparent 62%);
-    }
-    .hero__title {
-      font-size: clamp(1.4rem, 5.8vw, 1.75rem);
-      line-height: 1.45;
-      max-width: 100%;
-    }
-    .hero__title-l1 {
-      color: #fff;
-      text-shadow:
-        0 0 1px rgba(11, 15, 18, 0.95),
-        0 1px 3px rgba(11, 15, 18, 0.8),
-        0 2px 14px rgba(11, 15, 18, 0.55);
-    }
-    .hero__title-highlight {
-      color: #d8f7fc;
-      text-shadow:
-        0 0 1px rgba(11, 15, 18, 1),
-        0 0 2px rgba(11, 15, 18, 0.95),
-        0 1px 4px rgba(11, 15, 18, 0.88),
-        0 2px 16px rgba(11, 15, 18, 0.65),
-        0 0 24px rgba(58, 154, 173, 0.45);
-    }
   }
   .hero__actions {
     display: flex;
@@ -1327,9 +1292,198 @@
     .nav.is-open .nav__burger { color: var(--text); }
     .nav__burger { display: block; z-index: 270; }
     .mobile-bar { display: grid; }
-    body { padding-bottom: 64px; }
-    .demo-pill { bottom: calc(72px + env(safe-area-inset-bottom)); font-size: 10px; }
+    body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+    .demo-pill { bottom: calc(68px + env(safe-area-inset-bottom)); font-size: 10px; }
     .hero__scroll { display: none; }
+  }
+
+  /* ── Smartphone layout (≤768px) ── */
+  @media (max-width: 768px) {
+    :root {
+      --wrap: min(1280px, calc(100% - 40px));
+      --hours-h: 52px;
+      --nav-h: 52px;
+    }
+
+    /* Header: status bar + nav */
+    .status-bar {
+      height: auto;
+      min-height: var(--hours-h);
+      padding: 12px 16px;
+      font-size: 11px;
+      box-sizing: border-box;
+    }
+    .status-bar__inner {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+    .status-bar__label,
+    .status-bar__detail {
+      font-size: 11px;
+    }
+    .status-bar__tel { display: none; }
+    .nav {
+      height: auto;
+      min-height: var(--nav-h);
+      padding: 12px 16px;
+      box-sizing: border-box;
+    }
+    .nav__inner {
+      width: 100%;
+      max-width: none;
+    }
+    .nav__logo-main { font-size: 14px; }
+    .nav__logo-sub { font-size: 8px; }
+
+    /* Hero */
+    .hero {
+      align-items: stretch;
+      min-height: 85svh;
+      height: 85svh;
+      max-height: 85svh;
+    }
+    .hero__media img {
+      filter: brightness(0.88) saturate(0.88);
+      object-position: center 28%;
+    }
+    .hero__media::after {
+      background:
+        linear-gradient(0deg, rgba(11, 15, 18, 0.82) 0%, rgba(11, 15, 18, 0.32) 48%, rgba(11, 15, 18, 0.28) 100%),
+        linear-gradient(90deg, rgba(11, 15, 18, 0.55) 0%, transparent 62%);
+    }
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      align-self: stretch;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      min-height: 100%;
+      margin-top: clamp(0.35rem, 2.5vh, 1rem);
+      padding: 0 20px 160px;
+      box-sizing: border-box;
+    }
+    .hero__badge {
+      display: inline-flex;
+      width: auto;
+      max-width: 90%;
+      align-self: flex-start;
+      flex-shrink: 0;
+      margin-left: -20px;
+      margin-bottom: 0.85rem;
+      padding: 8px 16px 8px 20px;
+      font-size: 12px;
+      border-radius: 0 2px 2px 0;
+    }
+    .hero__main {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      flex: 1;
+      padding: 0;
+      width: 100%;
+    }
+    .hero__title {
+      font-size: clamp(22px, 5vw, 32px);
+      line-height: 1.5;
+      letter-spacing: normal;
+      max-width: 100%;
+      margin-bottom: 1rem;
+    }
+    .hero__title-l1,
+    .hero__title-l2 {
+      display: block;
+      white-space: normal;
+      letter-spacing: normal;
+    }
+    .hero__title-l1 {
+      color: #fff;
+      text-shadow:
+        0 0 1px rgba(11, 15, 18, 0.95),
+        0 1px 3px rgba(11, 15, 18, 0.8),
+        0 2px 14px rgba(11, 15, 18, 0.55);
+    }
+    .hero__title-l2.hero__title-highlight {
+      color: #c5eef5;
+      text-shadow:
+        0 0 1px rgba(11, 15, 18, 1),
+        0 0 2px rgba(11, 15, 18, 0.95),
+        0 1px 4px rgba(11, 15, 18, 0.88),
+        0 2px 16px rgba(11, 15, 18, 0.65),
+        0 0 24px rgba(58, 154, 173, 0.45);
+    }
+    .hero__actions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 0;
+    }
+    .hero__actions .btn {
+      flex: 1;
+      min-width: 0;
+      height: 52px;
+      min-height: 52px;
+      padding: 0 10px;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    .hero__actions .btn--line {
+      border-color: #fff;
+      color: #fff;
+    }
+    .hero__actions .btn--line:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    /* Section spacing (~60% of desktop) */
+    .statement { padding: clamp(2.4rem, 6vw, 4.2rem) 0; }
+    .compare { padding: clamp(2.4rem, 4.8vw, 3.6rem) 0; }
+    .story { padding: clamp(2.4rem, 4.8vw, 3.6rem) 0; }
+    .feature-split__content { padding: clamp(1.5rem, 3.6vw, 2.4rem); }
+    .gallery { padding: clamp(1.8rem, 3.6vw, 3rem) 0; }
+    .doctor { padding: clamp(2.4rem, 4.8vw, 3.6rem) 0; }
+    .services-secondary { padding: clamp(1.8rem, 3.6vw, 2.7rem) 0; }
+    .pillars { padding: clamp(1.8rem, 3.6vw, 2.7rem) 0; }
+    .visible-treat { padding: clamp(2.4rem, 4.8vw, 3.3rem) 0; }
+    .trust { padding: clamp(2.1rem, 4.2vw, 3rem) 0; }
+    .team { padding: clamp(2.4rem, 4.8vw, 3.3rem) 0; }
+    .branch-banner { padding: clamp(1.8rem, 3.6vw, 2.4rem) 0; }
+    .clinic-strip__text { padding: clamp(1.2rem, 3vw, 2.1rem); }
+    .access { padding: clamp(2.4rem, 4.8vw, 3rem) 0; }
+    .cta { padding: clamp(1.8rem, 3.6vw, 2.4rem) 0; }
+
+    /* Bottom fixed bar */
+    .mobile-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      gap: 12px;
+      padding: 0 16px env(safe-area-inset-bottom);
+      height: calc(56px + env(safe-area-inset-bottom));
+      box-sizing: border-box;
+    }
+    .mobile-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      height: 56px;
+      min-height: 56px;
+      padding: 0;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+    .demo-pill {
+      top: auto;
+      bottom: calc(80px + env(safe-area-inset-bottom));
+      font-size: 10px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1384,13 +1538,15 @@
   </div>
   <div class="hero__content">
     <p class="hero__badge">口腔外科・有病者歯科・インプラント・訪問診療</p>
-    <h1 class="hero__title">
-      <span class="hero__title-l1">「見えないから任せる」のではなく、</span>
-      <span class="hero__title-l2 hero__title-highlight">"見えるから納得できる"治療を。</span>
-    </h1>
-    <div class="hero__actions">
-      <a href="#microscope" class="btn btn--fill">マイクロスコープ治療とは</a>
-      <a href="#access" class="btn btn--line">診療時間・ご予約</a>
+    <div class="hero__main">
+      <h1 class="hero__title">
+        <span class="hero__title-l1">「見えないから任せる」のではなく、</span>
+        <span class="hero__title-l2 hero__title-highlight">"見えるから納得できる"治療を。</span>
+      </h1>
+      <div class="hero__actions">
+        <a href="#microscope" class="btn btn--fill">マイクロスコープ治療とは</a>
+        <a href="#access" class="btn btn--line">診療時間・ご予約</a>
+      </div>
     </div>
   </div>
   <span class="hero__scroll" aria-hidden="true">SCROLL</span>
