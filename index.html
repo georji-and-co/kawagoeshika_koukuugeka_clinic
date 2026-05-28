@@ -314,7 +314,6 @@
     transition: transform 0.2s, background 0.2s;
   }
   .btn:active { transform: scale(0.98); }
-  .btn__label-short { display: none; }
   .btn--fill {
     background: var(--accent-light);
     color: #fff;
@@ -1540,7 +1539,7 @@
       margin-left: -16px;
     }
     .hero__title {
-      font-size: clamp(18px, 4.5vw, 24px);
+      font-size: clamp(20px, 5.5vw, 28px);
       letter-spacing: normal;
       line-height: 1.6;
       word-break: keep-all;
@@ -1551,16 +1550,22 @@
       line-height: 1.6;
     }
     .hero__actions .btn {
-      flex: 1;
       min-width: 0;
       height: auto;
-      min-height: 44px;
-      font-size: 12px;
-      padding: 12px 8px;
+      min-height: 48px;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      padding: 14px 6px;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .hero__actions .btn__label-full { display: none; }
-    .hero__actions .btn__label-short { display: inline; }
+    .hero__actions .btn--fill {
+      flex: 3;
+    }
+    .hero__actions .btn--line {
+      flex: 2;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1621,10 +1626,7 @@
         <span class="hero__title-l2 hero__title-highlight">"見えるから納得できる"治療を。</span>
       </h1>
       <div class="hero__actions">
-        <a href="#microscope" class="btn btn--fill">
-          <span class="btn__label-full">マイクロスコープ治療とは</span>
-          <span class="btn__label-short">マイクロ治療とは</span>
-        </a>
+        <a href="#microscope" class="btn btn--fill">マイクロスコープ治療とは</a>
         <a href="#access" class="btn btn--line">診療時間・ご予約</a>
       </div>
     </div>
