@@ -30,6 +30,9 @@
   }
 
   html { scroll-behavior: smooth; }
+  @media (max-width: 900px) {
+    html { scroll-padding-top: 80px; }
+  }
   body {
     font-family: var(--sans);
     background: var(--bg);
@@ -1261,36 +1264,77 @@
     .gallery__item { height: 200px; }
     .nav__links {
       position: fixed;
-      inset: var(--header) 0 0 0;
-      z-index: 260;
-      background: #f6f3ee;
+      top: 0;
+      right: 0;
+      left: auto;
+      bottom: auto;
+      width: 280px;
+      height: 100svh;
+      z-index: 200;
       flex-direction: column;
-      justify-content: center;
-      gap: 1.5rem;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 0;
+      padding: 80px 0 120px;
+      background-color: rgba(13, 31, 60, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       transform: translateX(100%);
-      transition: transform 0.35s var(--ease);
-      box-shadow: -8px 0 32px rgba(11, 15, 18, 0.12);
+      transition: transform 0.3s ease;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.25);
+      overflow-y: auto;
     }
     .nav.is-open .nav__links { transform: translateX(0); }
     .nav.is-open {
-      background: rgba(246, 243, 238, 0.98);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 1px 0 var(--line);
+      background: transparent;
+      box-shadow: none;
     }
-    .nav.is-open.is-dark .nav__logo-sub,
-    .nav.is-open.is-dark .nav__logo-main { color: var(--text); }
-    .nav.is-open.is-dark .nav__logo-sub { opacity: 0.62; }
-    .nav.is-open .nav__links a {
-      color: var(--text);
-      font-size: 1.1rem;
+    .nav.is-open .nav__inner {
+      position: relative;
+      z-index: 201;
     }
-    .nav.is-open .nav__links a:hover { color: var(--accent); }
-    .nav.is-open .nav__cta {
-      background: var(--accent);
+    .nav.is-open .nav__burger,
+    .nav.is-open.is-dark .nav__burger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 210;
+      width: 32px;
+      height: 32px;
       color: #fff;
     }
-    .nav.is-open .nav__burger { color: var(--text); }
-    .nav__burger { display: block; z-index: 270; }
+    .nav.is-open .nav__burger span {
+      height: 2px;
+    }
+    .nav.is-open .nav__links a:not(.nav__cta) {
+      display: block;
+      width: 100%;
+      padding: 20px 32px;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-sizing: border-box;
+    }
+    .nav.is-open .nav__links a:not(.nav__cta):hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .nav.is-open .nav__cta {
+      display: block;
+      margin: 1rem 32px 0;
+      width: calc(100% - 64px);
+      text-align: center;
+      padding: 20px 32px;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      color: #fff;
+      border-bottom: none;
+      background: var(--accent-light);
+    }
+    .nav.is-open .nav__cta:hover { background: #4eb8c9; }
+    .nav__burger { display: block; z-index: 201; }
     .mobile-bar { display: grid; }
     body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
     .demo-pill { bottom: calc(68px + env(safe-area-inset-bottom)); font-size: 10px; }
@@ -1517,7 +1561,7 @@
     </button>
     <nav class="nav__links">
       <a href="#services">診療科目</a>
-      <a href="#microscope">マイクロ</a>
+      <a href="#microscope">マイクロスコープ精密治療</a>
       <a href="#team">医師</a>
       <a href="#access">アクセス</a>
       <a href="tel:049-232-4182" class="nav__cta">お電話</a>
@@ -2217,13 +2261,13 @@
   burger.addEventListener('click', () => {
     const open = nav.classList.toggle('is-open');
     burger.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニュー');
   });
   links.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => {
       nav.classList.remove('is-open');
       burger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+      burger.setAttribute('aria-label', 'メニュー');
     });
   });
 
